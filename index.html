@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>MURALS DAPP</title>
+		<meta name="description" content="Murals NFTs marketplace" />
+		<meta name="keywords" content="buy and sell NFTs curated contents" />
+		<meta name="author" content="Xunorus" />
+		<link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+		
+    <link href="css/hamburgers.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/base.css" />
+	<script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
+	
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.all.min.js"></script>
+
+  </head>
+
+  <body>
+	<div class=" text-wrap" id="logger"> 
+    <button id="btn-login" class="btn-grad">Login</button>
+    <button id="btn-logout">Logout</button>
+</div>
+
+    <div class="container">
+              <div id="app" class="modal-content" >
+              <div class="title">MURALS LAZY MINTER</div>
+            
+            <div id="success_message"></div>
+            <div class="form_element">
+                <input type="text" class="form-control" id="input_name" name="name" placeholder="NFT name">
+            </div>
+            
+            <div class="form_element">
+                <input type="text" class="form-control" id="input_description" name="description"  placeholder="NFT description">
+            </div>
+            
+            <div class="form_element">
+                <input type="file" class="form-control" accept="image/png, image/jpeg" id="input_image" name="image"  placeholder="NFT image">
+            </div>
+            
+            <div class="form_element">
+                <button class="btn btn-primary btn-lg btn-block" id="submit_button">Submit</button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/index.js"></script>
+  </body>
+</html>
