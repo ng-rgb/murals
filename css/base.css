@@ -407,9 +407,9 @@ main {
 }
 
 
-#imgLogo{
+/* #imgLogo{
 	display: none;
-}
+} */
 
 
 .actions{
@@ -439,7 +439,8 @@ main {
 		display: block;
 		
 		/* width: 170px; */
-		width: 233px;
+		/* width: 233px; */
+		height: 8rem;
 	}
 	.grid {
 		display: grid;
