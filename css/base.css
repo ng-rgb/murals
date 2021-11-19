@@ -833,7 +833,8 @@ nav a:hover::after {
 /* SIDEBAR 							*/
 #button{
 	position: fixed;
-    z-index: 1;
+    z-index: 2;
+
     /* right: 1em; */
     left: 1em;
 }
@@ -844,14 +845,17 @@ nav a:hover::after {
 .sidebar {
     position: fixed;
     width: 220px;
-    right: 0;
+    /* right: 0; */
+    left: 0;
     top: 0;
     opacity: 1;
     -webkit-transition: -webkit-transform 0.5s;
     transition: transform 0.5s;
-    -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
-    background: brown;
+    /* -webkit-transform: translate3d(100%, 0, 0); */
+    -webkit-transform: translate3d(-220px, 0, 0);
+    /* transform: translate3d(-220px, 0, 0); */
+    /* background: brown; */
+    background: transparent;
     z-index: 1;
     height: 100vh;
     overflow: auto;
@@ -873,6 +877,15 @@ nav a:hover::after {
       box-shadow: 0 0 10px var(--c1);
 }
 
+.closeonclick{
+
+}
+
+#sidebarContent{
+	top: 4em;
+    position: fixed;
+}
+}
 .mcontent {
     flex: 1;
     box-shadow: 0 0 5px rgba(var(--c1), 1);

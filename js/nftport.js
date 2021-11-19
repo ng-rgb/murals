@@ -1,7 +1,7 @@
-// remove loading
+// REMOVE LOADING
 document.body.classList.remove('loading');
 
-// custom swet alerts
+// CUSTOM SWEET ALERTS
 const Toast = Swal.mixin({
     toast: true,
     position: "top-right",
@@ -20,6 +20,50 @@ const Toast = Swal.mixin({
     showConfirmButton: false,
     showConfirmButton: true
   });
+  
+
+   /*********************************************************************************************
+   .) NAVBAR
+   **********************************************************************************************/
+   var navb = document.getElementById('button');
+   var sideBar = document.getElementById('sideBar');
+   var content= document.getElementById('main');
+   navb.onclick = navbar;
+   
+   function navbar() {
+     if (navb.classList.contains('is-active')) { // if user is no defined
+         console.log('CIERRA');
+         navb.classList.remove('is-active');
+         sideBar.classList.remove('isOpen');
+         content.classList.remove('isOpen');
+   
+         TweenMax.to(".nav", 0.5, { xPercent: -100, display: 'none', ease: Expo.easeOut });
+         window.removeEventListener("click", listener, false);
+   
+     } else {
+         console.log('ABRE');
+         navb.classList.add('is-active');
+         sideBar.classList.add('isOpen');
+         content.classList.add('isOpen');
+         TweenMax.fromTo(".nav", 0.5, { xPercent: -100 }, { xPercent: 0, display: 'block', ease: Expo.easeOut });
+         TweenMax.staggerFrom('.nav li', 0.5, { opacity: 0, y: 20, ease: Power2.easeInOut }, 0.1);
+         setTimeout(() => { window.addEventListener("click", listener, false); }, 100);
+   
+     }
+   }
+   
+   function listener(e) {
+     if (sideBar.contains(e.target)) {
+         console.log("clicked A Inside" + e.target);
+     } else {
+         console.log("clicked B outside" + e.target);
+         navb.classList.remove('is-active');
+         sideBar.classList.remove('isOpen');
+         content.classList.remove('isOpen');
+         TweenMax.to(".nav", 0.5, { xPercent: -100, display: 'none', ease: Expo.easeOut });
+         window.removeEventListener("click", listener, false);
+     }
+   }
   
 
 // retriebe all nfts per contract
