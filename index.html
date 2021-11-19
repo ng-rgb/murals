@@ -1,57 +1,181 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en" class="no-js">
+	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>CRYPTOMURALS DAPP</title>
-		<meta name="description" content="CryptoMurals NFTs marketplace" />
+		<title>MURALS APP</title>
+		<meta name="description" content="Murals NFTs marketplace" />
 		<meta name="keywords" content="buy and sell NFTs curated contents" />
 		<meta name="author" content="Xunorus" />
 		<link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+		
+		<!-- INSERCION -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 		
-    <link href="css/hamburgers.css" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.all.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+		<!-- <script src="https://unpkg.com/moralis/dist/moralis.js"></script> -->
+
+		
+		 <link rel="preconnect" href="https://fonts.googleapis.com">
+		 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		 <link href="https://fonts.googleapis.com/css2?family=Monda:wght@400;700&family=Monoton&display=swap" rel="stylesheet">
+
+
+<!-- fn INSERCION -->
+<link href="css/hamburgers.css" rel="stylesheet">
+
 	<link rel="stylesheet" type="text/css" href="css/base.css" />
 	<script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
 	
+	</head>
+	<body class="loading">
+<br>
 
-    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
-    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.all.min.js"></script>
+<!-- HEADER -->
+<header>
+  <button class="hamburger  hamburger--collapse" type="button" id="button" onclick="connect();" value="before">
+    <span class="hamburger-box">
+      <span class="hamburger-inner"></span>
+    </span>
+  </button>
+  <img id="imgLogo" src="logo_cryptomurals.svg" />
+  <div class=" text-wrap" id="logg">
+  </div>
+</header>
 
-  </head>
 
-  <body>
-	<div class=" text-wrap" id="logger"> 
-    <button id="btn-login" class="btn-grad">Login</button>
-    <button id="btn-logout">Logout</button>
-</div>
+<!-- NAVBAR -->
+<div id="sideBar" class="sidebar">
+	<a class="closeonclick" href="/"> </a>
 
-    <div class="container">
-              <div id="app" class="modal-content" >
-              <div class="title">CRYPTOMURALS LAZY MINTER</div>
-            
-            <div id="success_message"></div>
-            <div class="form_element">
-                <input type="text" class="form-control" id="input_name" name="name" placeholder="NFT name">
-            </div>
-            
-            <div class="form_element">
-                <input type="text" class="form-control" id="input_description" name="description"  placeholder="NFT description">
-            </div>
-            
-            <div class="form_element">
-                <input type="file" class="form-control" accept="image/png, image/jpeg" id="input_image" name="image"  placeholder="NFT image">
-            </div>
-            
-            <div class="form_element">
-                <button class="btn btn-primary btn-lg btn-block" id="submit_button">Submit</button>
+	<div id='sidebarContent'>
+		<h1>Your Items:</h1>
+	<p id='fakeinfo'>nothing here yet :(</p>
+			<!-- <img id="sidebarLogo" src="logomurals.svg" /> -->
+		<ul class="nav">
+		</ul>
+
+
+	</div>
+  </div>
+<!-- fin NAVBAR -->
+
+		<svg class="hidden">
+			<symbol id="icon-cross" viewBox="0 0 24 23">
+				<title>cross</title>
+				<path d="M23.865 3.677c.197-.383.164-.818-.008-1.18.048-.41-.06-.827-.448-1.147L22.323.457c-.636-.524-1.632-.689-2.25 0a155.348 155.348 0 0 1-8.797 9.001C9.011 7.342 6.72 5.255 4.443 3.165c-.8-.734-1.956-.503-2.458.37C1.253 3.9.659 4.374.168 5.182c-.233.386-.215.872 0 1.258 1.47 2.635 4.31 4.951 6.646 7.083-.313.28-.623.562-.942.836-3.146 2.702-5.268 4.416-1.331 7.187.053.037.107.029.161.05.076.036.148.06.232.074.026 0 .05.005.075.003.082.007.16.027.243.011 2.117-.415 4.085-2.074 5.872-3.9 1.74 1.715 3.592 3.353 5.63 4.325.485.232 1.063.097 1.436-.227.626.047 1.197-.342 1.484-.901.042-.026.07-.041.116-.07.91-.569.993-1.701.32-2.482-1.522-1.762-3.138-3.438-4.787-5.084 2.968-2.9 6.674-6.027 8.542-9.667z"/>
+			</symbol>
+		</svg>
+		<main id='main' class='mcontent'>
+
+
+
+			<div class="content">
+				<div id="inventory" class="grid">
+
+				</div>
+			</div>
+
+      
+<!-- ------------------------------------- -->
+<!-- MODALS -->
+
+			<div id="overlay" class="overlay">
+				<div class="overlay__reveal"></div>
+
+				<button class="overlay__close"><svg class="icon icon--cross"><use xlink:href="#icon-cross"></use></svg></button>
+
+
+        <!-- MINTER MODAL -->
+        <div id="minterModal" class="modal">
+            <div class="modal-content">
+                <span class="closeModal">&times;</span>
+                <div id="myMINTER" class="header ld-over">
+					<div>
+						<label>Token id</label>
+						<input id="token_id_input" type="number">
+					</div>
+					<div>
+						<label>Amount</label>
+						<input id="amount_input" type="number" value="1">
+					</div>
+					<div>
+						<label>Address</label>
+						<input id="address_input" type="text" maxlength="50" >
+					</div>
+					<div>
+						<button class="btn btn-primary" id="submit_mint">MINT</button>
+					</div>
+                </div>
             </div>
         </div>
-    </div>
+        <!-- fin MINTER MODAL -->
 
 
+
+       <!-- TRANSFER MODAL -->
+	   <div id="transferModal" class="modal">
+		<div class="modal-content">
+			<span class="closeModal">&times;</span>
+			<div id="myTRANSFER" class="header ld-over">
+				<div>
+					<label>Token id</label>
+					<input id="transferToken_id_input" type="number">
+				</div>
+				<div>
+					<label>Amount</label>
+					<input id="transferAmount_input" type="number" value="1">
+				</div>
+
+				<div>
+					<label>Address</label>
+					<input id="transferAddress_input" type="text" maxlength="50" >
+				</div>
+
+				<div>
+        <button class="btn btn-primary" id="submit_transfer">TRANSFER</button>
+				</div>
+				 
+
+			</div>
+		</div>
+	</div>
+	<!-- fin TRANSFER MODAL -->
+
+ <!-- BURNER MODAL -->
+ <div id="burnerModal" class="modal">
+	<div class="modal-content">
+		<span class="closeModal">&times;</span>
+		<div id="myBURNER" class="header ld-over">
+			<div>
+				<label>Token id</label>
+				<input id="burnerToken_id_input" type="number">
+			</div>
+			<div>
+				<label>Amount</label>
+				<input id="burnerAmount_input" type="number" value="1">
+			</div>
+			<div>
+				<label>Address</label>
+				<input id="burnerAddress_input" type="text" maxlength="50" >
+			</div>
+			<div>
+				<button class="btn btn-primary" id="submit_burn">Burn</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- fin BURNER MODAL -->
+			</div>
+
+<!-- FIN MODALS -->
+<!-- ------------------------------------- -->
+
+		</main>
 
 <!-- ------------------------------------- -->
   <!-- Site footer -->
@@ -70,8 +194,7 @@
 		  <h6>Categories</h6>
 		  <ul class="footer-links">
 			<li><a title="MURALS Documentation" target="_blank" href="/docs/">Documentation</a></li>
-			<li><a title="MURALS Documentation" target="_blank" href="/nftport.html">NFT port</a></li>
-			<!-- <li><a title="MURALS Documentation" target="_blank" href="/rarible.html">rarible lazy mint</a></li> -->
+			<li><a title="MURALS Documentation" target="_blank" href="/rarible.html">rarible lazy mint</a></li>
 		  </ul>
 		</div>
 
@@ -88,7 +211,7 @@
 	  <div class="row">
 		<div class="col-md-8 col-sm-6 col-xs-12">
 		  <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by 
-	   <a href="#">CRYOPTOMURALS</a>.and<a href="#">Xunorus</a>.
+	   <a href="#">MURALS</a>.
 		  </p>
 		</div>
 
@@ -103,6 +226,18 @@
 	</div>
 </footer>
 
-    <script type="text/javascript" src="js/index.js"></script>
-  </body>
+
+<!-- https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js -->
+
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js" integrity="sha512-B8ruywf8mKA4fm0K8SrrNhO5DTokuipFEo7rEnI0RVTt9p29MJKfg8TfOVwMAFZxgI+zOF4iwOA/ByvyJ/sslw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+	
+</script>
+<script src="js/abi.js"></script>
+<!-- <script src="js/demo.js"></script> -->
+<script src="js/nftport.js"></script>
+		
+
+	</body>
 </html>
