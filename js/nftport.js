@@ -68,19 +68,16 @@ const Toast = Swal.mixin({
 
 // retriebe all nfts per contract
 // https://docs.nftport.xyz/docs/nftport/b3A6MjAzNDUzNTQ-retrieve-contract-nf-ts
-// contract
-// const token_contract_address = TOKEN_CONTRACT_ADDRESS.toLowerCase();
-// console.log(token_contract_address);
 // let currentChain = 'rinkeby';
-// const TOKEN_CONTRACT_ADDRESS = "0xf1CCd9b401cb1b37eEd0fEC58752b0E07bd9A1D7"; // murals1155-v1d.sol 21-2-3-4-5-6-7
-// const TOKEN_CONTRACT_ADDRESS = "0x38a554984cf2205f7903123adeb6d560f46625e8"; // creados desde nftport como erc721 en polygon pero los mintea en rinkeby
 const NFTPORT_KEY = '524a1fad-f13f-4317-8ad0-0e75e45d4b61';
 const TOKEN_CONTRACT_ADDRESS = "0x0dB4DF5E0FF20aCF2E3469d5756103A3e03cd1a1"; // creados desde nftport como erc721 en polygon pero los mintea en rinkeby
 
 const metadataURI1 = 'ipfs://QmZUvNsdDabXqJyC47F9AkD3G2x1DAVPdGaGKwtpLjaAF9';
 const mint2Address = '';
+
 // RETRIEVE NFTs
-// fetch(`https://api.nftport.xyz/v0/nfts/${TOKEN_CONTRACT_ADDRESS}?chain=polygon`, {
+
+// fetch("https://api.nftport.xyz/v0/me/mints?chain=polygon", {
 //   "method": "GET",
 //   "headers": {
 //     "Content-Type": "application/json",
@@ -88,41 +85,65 @@ const mint2Address = '';
 //   }
 // })
 // .then(response => {
-//   console.log('NFTs: ',response);
+//   console.log(response);
+//   console.log('LENGTH: ',response.headers.forEach.length);
+
 // })
 // .catch(err => {
 //   console.error(err);
 // });
-fetch("https://api.nftport.xyz/v0/me/mints?chain=polygon", {
+
+const settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://api.nftport.xyz/v0/nfts/0x0dB4DF5E0FF20aCF2E3469d5756103A3e03cd1a1?chain=polygon",
   "method": "GET",
   "headers": {
     "Content-Type": "application/json",
     "Authorization": "524a1fad-f13f-4317-8ad0-0e75e45d4b61"
   }
-})
-.then(response => {
-  console.log(response);
-  console.log('LENGTH: ',response.headers.forEach.length);
+};
 
-})
-.catch(err => {
-  console.error(err);
+$.ajax(settings).done(function (response) {
+  // console.log(response);
+  console.log(response.nfts);
+  for ( var i = 0; i < response.nfts.length; i++ ) {
+  console.log(response.nfts[i].token_id);
+  console.log(response.nfts[i].contract_address);
+  console.log(response.nfts[i].chain);
+  // $("#main").html(response.nfts[i].token_id,response.nfts[i].contract_address,response.nfts[i].chain);
+
+  document.getElementById("main").innerHTML += "<p>" + response.nfts[i].token_id + " <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
+  
+
+}
 });
 
 
+// $.ajax({url: "demo_test.txt", success: function(result){
+//   $("#main").html(result);
+// }});
 
 
-// RETRIEVE CONTRACT
-fetch(`https://api.nftport.xyz/v0/contracts/${TOKEN_CONTRACT_ADDRESS}?chain=polygon`, {
-  "method": "GET",
-  "headers": {
-    "Content-Type": "application/json",
-    "Authorization": "524a1fad-f13f-4317-8ad0-0e75e45d4b61"
-  }
-})
-.then(response => {
-  console.log('CONTRACT: ',response);
-})
-.catch(err => {
-  console.error(err);
-});
+
+// $.ajax({
+//   url: "/get-users",
+//   method: "POST",
+//   data:{
+//       name: input,
+//   },
+//   success:function(response){
+//       html = "";
+//       html += '<ul class="list-unstyled">';
+//       $.each(response.data, function( index, value ) {
+//           html += '<li class="my-2 text-capitalize" style="cursor:pointer" data-id="'+ value.id +'">' + value.name +'</li>';
+//       });
+//       html += '</ul>';
+//       $('#speakerResponse').empty('').append(html);
+//       console.log(html);
+//   },
+//   error: function (xhr, ajaxOptions, thrownError) {
+//       console.log(xhr.status);
+//       console.log(thrownError);
+//   }
+// });

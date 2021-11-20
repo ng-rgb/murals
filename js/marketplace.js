@@ -173,27 +173,27 @@ const Toast = Swal.mixin({
   
   /** Add from here down */
   async function login() {
-    let user = Moralis.User.current();
-    if (!user) {
-     try {
-      currentUser = await Moralis.authenticate({ signingMessage: "Welcome to MURALS, sign this message to interact with this dapp!" })
-        console.log(user);
-        let userAddress = currentUser.get("ethAddress");
-        // console.log(user.get('ethAddress'));
-        document.getElementById("logg").innerHTML = "<p>"+userAddress +" <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logout()'></i> </p>";
-     } catch(error) {
-       console.log(error)
-     }
-    }
-  }
+  //   let user = Moralis.User.current();
+  //   if (!user) {
+  //    try {
+  //     currentUser = await Moralis.authenticate({ signingMessage: "Welcome to MURALS, sign this message to interact with this dapp!" })
+  //       console.log(user);
+  //       let userAddress = currentUser.get("ethAddress");
+  //       // console.log(user.get('ethAddress'));
+  //       document.getElementById("logg").innerHTML = "<p>"+userAddress +" <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logout()'></i> </p>";
+  //    } catch(error) {
+  //      console.log(error)
+  //    }
+  //   }
+  // }
   
-  async function logout() {
-    await Moralis.User.logOut();
-    console.log("logged out");
+  // async function logout() {
+  //   await Moralis.User.logOut();
+  //   console.log("logged out");
     
-    currentUser = "";
-    currentAddress = "";
-    document.getElementById("logg").innerHTML = 	`<button id="login" onclick="login();" class="btn-grad">CONNECT YOUR WALLET</button>`
+  //   currentUser = "";
+  //   currentAddress = "";
+  //   document.getElementById("logg").innerHTML = 	`<button id="login" onclick="login();" class="btn-grad">CONNECT YOUR WALLET</button>`
   
   }
   
@@ -202,20 +202,20 @@ const Toast = Swal.mixin({
   
   // ------------------------------------------------
   // BUY
-  buyItem = async item => {
-    user = await Moralis.User.current();
-    if (!user) {
-      login();
-      return;
-    }
+  // buyItem = async item => {
+  //   user = await Moralis.User.current();
+  //   if (!user) {
+  //     login();
+  //     return;
+  //   }
   
-    console.log("buyItem: ", item, " tokenObjectId: ", item.tokenObjectId);
-    itemBeingBought = item.tokenObjectId;
-    await marketplaceContract.methods.buyitem(item.uid).send({
-      from: user.get("ethAddress"),
-      value: item.askingPrice
-    });
-  };
+  //   console.log("buyItem: ", item, " tokenObjectId: ", item.tokenObjectId);
+  //   itemBeingBought = item.tokenObjectId;
+  //   await marketplaceContract.methods.buyitem(item.uid).send({
+  //     from: user.get("ethAddress"),
+  //     value: item.askingPrice
+  //   });
+  // };
   
     
    /*********************************************************************************************
