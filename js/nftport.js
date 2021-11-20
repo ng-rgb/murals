@@ -74,9 +74,11 @@ const Toast = Swal.mixin({
 // let currentChain = 'rinkeby';
 // const TOKEN_CONTRACT_ADDRESS = "0xf1CCd9b401cb1b37eEd0fEC58752b0E07bd9A1D7"; // murals1155-v1d.sol 21-2-3-4-5-6-7
 // const TOKEN_CONTRACT_ADDRESS = "0x38a554984cf2205f7903123adeb6d560f46625e8"; // creados desde nftport como erc721 en polygon pero los mintea en rinkeby
-const TOKEN_CONTRACT_ADDRESS = "0x0dB4DF5E0FF20aCF2E3469d5756103A3e03cd1a1"; // creados desde nftport como erc721 en polygon pero los mintea en rinkeby
 const NFTPORT_KEY = '524a1fad-f13f-4317-8ad0-0e75e45d4b61';
+const TOKEN_CONTRACT_ADDRESS = "0x0dB4DF5E0FF20aCF2E3469d5756103A3e03cd1a1"; // creados desde nftport como erc721 en polygon pero los mintea en rinkeby
 
+const metadataURI1 = 'ipfs://QmZUvNsdDabXqJyC47F9AkD3G2x1DAVPdGaGKwtpLjaAF9';
+const mint2Address = '';
 // RETRIEVE NFTs
 // fetch(`https://api.nftport.xyz/v0/nfts/${TOKEN_CONTRACT_ADDRESS}?chain=polygon`, {
 //   "method": "GET",
