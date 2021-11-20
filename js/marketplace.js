@@ -25,47 +25,55 @@ const Toast = Swal.mixin({
   });
   
   
+
+
   
-  // 0. Check moralis
-  const serverUrl = "https://hyorvrgxcdmm.usemoralis.com:2053/server";
-  const appId = "Lx28OvD1jYsfl8Q52brKgUbJ1yGP9kWgffDg2hrU";
-  Moralis.start({ serverUrl, appId });
-  // const TOKEN_CONTRACT_ADDRESS = "0x37C9BD60befCA58106ee871206B3508F37b44662"; // muralsv1b.sol 21-2-3-4-5-6-7
-  const TOKEN_CONTRACT_ADDRESS = "0xf1CCd9b401cb1b37eEd0fEC58752b0E07bd9A1D7"; // murals1155-v1d.sol 21-2-3-4-5-6-7
-  
-  const token_contract_address = TOKEN_CONTRACT_ADDRESS.toLowerCase();
-  console.log(token_contract_address);
-  let currentChain = 'rinkeby';
-  initializeApp();
-  
-  function fetchNFTMetadata(NFTs){
-  
-    let promises = [];
-  
-    for (let i=0; i < NFTs.length; i++){
-      let nft = NFTs[i];
-      let id = nft.token_id;
-      // call moralis cloud function => static json file
-      promises.push(fetch("https://hyorvrgxcdmm.usemoralis.com:2053/server/functions/getNFT?_ApplicatinoId=Lx28OvD1jYsfl8Q52brKgUbJ1yGP9kWgffDg2hrU&nftId="+ id)
-      .then(res => res.json())
-      .then(res => JSON.parse(res.result))
-      .then(res => {nft.metadata = res})
-      .then(res => {// API call
-          const options = { address: TOKEN_CONTRACT_ADDRESS, token_id: id, chain: currentChain     };
-          return Moralis.Web3API.token.getTokenIdOwners(options)
-      })
-      .then( (res) => {
-        // console.log('NFT OWNERS',res);
-        nft.owners = [];
-        res.result.forEach(element => {
-          nft.owners.push(element.owner_of);
-        });
-        return nft;
-  
-      }))
-    }
-    return Promise.all(promises);
-  }
+//   ////////////////////////////////////////
+// // retriebe all nfts per contract
+// const NFTPORT_KEY = '524a1fad-f13f-4317-8ad0-0e75e45d4b61';
+// const TOKEN_CONTRACT_ADDRESS = "0x0dB4DF5E0FF20aCF2E3469d5756103A3e03cd1a1"; // creados desde nftport como erc721 en polygon pero los mintea en rinkeby
+// const CHAIN = "polygon"; // creados desde nftport como erc721 en polygon pero los mintea en rinkeby
+
+// // RETRIEVE NFTs
+// const settings = {
+//   "async": true,
+//   "crossDomain": true,
+//   "url": `https://api.nftport.xyz/v0/nfts/${TOKEN_CONTRACT_ADDRESS}?chain=${CHAIN}`,
+//   "method": "GET",
+//   "headers": {
+//     "Content-Type": "application/json",
+//     "Authorization": `${NFTPORT_KEY}`
+//   }
+// };
+
+// $.ajax(settings).done(function (response) {
+//   console.log('TOTAL NFTs: ',response.nfts.length);
+//   for (var i = 0; i < response.nfts.length; i++) {
+//     let token = response.nfts[i].token_id,
+//       caddr = response.nfts[i].contract_address,
+//       chain = response.nfts[i].chain;
+//     document.getElementById("main").innerHTML += "<p>" + token + " <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
+//     const settings = {
+//       "async": true,
+//       "crossDomain": true,
+//       "url": `https://api.nftport.xyz/v0/nfts/${caddr}/${token}?chain=${chain}`,
+//       "method": "GET",
+//       "headers": {
+//         "Content-Type": "application/json",
+//         "Authorization": "524a1fad-f13f-4317-8ad0-0e75e45d4b61"
+//       }
+//     };
+
+//     $.ajax(settings).done(function (x) {
+//       console.log('name:', x.nft.metadata.name);
+//       console.log('description:', x.nft.metadata.description);
+//       console.log('image:', x.nft.metadata.image);
+//     });
+//   }
+// });
+
+
+
   
   
   function renderInventory(NFTs){
@@ -127,45 +135,86 @@ const Toast = Swal.mixin({
   }
   
   
+  ////////////////////////////////////////
+// retriebe all nfts per contract
+const NFTPORT_KEY = '524a1fad-f13f-4317-8ad0-0e75e45d4b61';
+const TOKEN_CONTRACT_ADDRESS = "0x0dB4DF5E0FF20aCF2E3469d5756103A3e03cd1a1"; // creados desde nftport como erc721 en polygon pero los mintea en rinkeby
+const CHAIN = "polygon"; // creados desde nftport como erc721 en polygon pero los mintea en rinkeby
+const parent = document.getElementById("inventory");
+const insideContent = document.getElementById("overlay");
+
+// RETRIEVE NFTs
+const settings = { "async": true, "crossDomain": true, "url": `https://api.nftport.xyz/v0/nfts/${TOKEN_CONTRACT_ADDRESS}?chain=${CHAIN}`, "method": "GET", "headers": { "Content-Type": "application/json", "Authorization": `${NFTPORT_KEY}` } };
+
+$.ajax(settings).done(function (response) {
+  console.log('TOTAL NFTs: ',response.nfts.length);
+  for (var i = 0; i < response.nfts.length; i++) {
+    let token = response.nfts[i].token_id,
+      caddr = response.nfts[i].contract_address,
+      chain = response.nfts[i].chain;
+
+    // document.getElementById("main").innerHTML += "<p>" + token + " <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
+    const settings = { "async": true, "crossDomain": true, "url": `https://api.nftport.xyz/v0/nfts/${caddr}/${token}?chain=${chain}`, "method": "GET", "headers": { "Content-Type": "application/json", "Authorization": "524a1fad-f13f-4317-8ad0-0e75e45d4b61" } };
+
+    $.ajax(settings).done(function (x) {
+      // console.log('name:', x.nft.metadata.name);
+      // console.log('description:', x.nft.metadata.description);
+      // console.log('image:', x.nft.metadata.description);
+let name = x.nft.metadata.name;
+let description = x.nft.metadata.description;
+let image = x.nft.metadata.image;
+console.log('name:', name);
+console.log('description:', description);
+console.log('image:', image);
+
+
+      let htmlString =`
+      <div class="box">
+        <div class="box__shadow"></div>
+        <img class="box__img" src="${image}" alt="Some image"/>
+        <h3 class="box__title"><span class="box__title-inner" data-hover="${name}">${name}</span></h3>
+        <h4 class="box__text"><span class="box__text-inner">CRYPTOMURAL</span></h4>
+        <div class="box__deco">&#10032;</div>
+        <p class="box__content">${description} <br>
+        </p>
+      </div>
+      `
+      let col = document.createElement("a");
+      col.className = "grid__item";
+      // col.href = "#preview-"+`${nft.token_id}`;
+      // col.id = `${nft.token_id}`;//truco poner el nftId en el id del item (a tag)
+      col.innerHTML = htmlString;
+      parent.appendChild(col);
+
+
+
+
+
+    });
+
+
+
+
+  }
+});
+
+initializeApp();
   
   async function initializeApp(){
-  
-      // let currentChain = 'rinkeby';
-      const options = { address: TOKEN_CONTRACT_ADDRESS, chain: 'rinkeby' };
-      let NFTs = await Moralis.Web3API.token.getAllTokenIds(options);
-      let NFTWithMetadata = await fetchNFTMetadata(NFTs.result);
-      console.log(NFTWithMetadata);
-      renderInventory(NFTWithMetadata);
+
+      // let NFTWithMetadata = await fetchNFTMetadata(NFTs.result);
+      // renderInventory(NFTWithMetadata);
       iniciar();// starts demo.js
       console.log("iniciar has benn triggered");
   
       // INICIA USUARIO
       if (typeof web3 !== "undefined") {
         console.log("1- web3 is enabled");
-        // initializeApp();
       } else {
         console.log("web3 is not found");
         // noWeb3();
         Swal.fire({ title: "web3 is not found", icon: "info", html: 'A web3 enabled browser is needed to use Murals. ' + '.', showCloseButton: true, focusConfirm: false, confirmButtonText: '<i class="fa fa-thumbs-up"></i> OK', confirmButtonAriaLabel: "Thumbs up, great!" });
       }
-  
-      let currentUser =  Moralis.User.current();
-      // currentUser =  Moralis.User.current();
-      web3 = await Moralis.Web3.enable();
-       accounts = await web3.eth.getAccounts();
-      
-      console.log('currentUser: ',currentUser);
-      if (!currentUser || currentUser === null){ 
-        document.getElementById("logg").innerHTML = 	`<button id="login" onclick="login();" class="btn-grad">CONNECT YOUR WALLET</button>`
-  
-      } else{
-        let userAddress = currentUser.get("ethAddress");
-        document.getElementById("logg").innerHTML = "<p>"+userAddress +" <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logout()'></i> </p>";
-  
-        console.log("user is signed in");
-        Toast.fire( " Great!", "  You are correctly logged in", "success" );
-      }
-      
   }
   
   
@@ -173,28 +222,8 @@ const Toast = Swal.mixin({
   
   /** Add from here down */
   async function login() {
-  //   let user = Moralis.User.current();
-  //   if (!user) {
-  //    try {
-  //     currentUser = await Moralis.authenticate({ signingMessage: "Welcome to MURALS, sign this message to interact with this dapp!" })
-  //       console.log(user);
-  //       let userAddress = currentUser.get("ethAddress");
-  //       // console.log(user.get('ethAddress'));
-  //       document.getElementById("logg").innerHTML = "<p>"+userAddress +" <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logout()'></i> </p>";
-  //    } catch(error) {
-  //      console.log(error)
-  //    }
-  //   }
-  // }
-  
-  // async function logout() {
-  //   await Moralis.User.logOut();
-  //   console.log("logged out");
-    
-  //   currentUser = "";
-  //   currentAddress = "";
+  //   document.getElementById("logg").innerHTML = "<p>"+userAddress +" <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logout()'></i> </p>";
   //   document.getElementById("logg").innerHTML = 	`<button id="login" onclick="login();" class="btn-grad">CONNECT YOUR WALLET</button>`
-  
   }
   
   
@@ -261,7 +290,10 @@ const Toast = Swal.mixin({
      }
    }
   
-  
+      
+   /*********************************************************************************************
+   .) MODALS
+   **********************************************************************************************/
      
   //////////////////////////
   // CLOSE MODAL
