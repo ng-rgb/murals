@@ -74,7 +74,7 @@ console.log('x:', x );
         <img class="box__img" src="${image}" alt="Some image"/>
         <h3 class="box__title"><span class="box__title-inner" data-hover="${name}">${name}</span></h3>
         <h4 class="box__text"><span class="box__text-inner">${chain}</span></h4>
-        <div style='display:none' class="box__deco">&#10032;</div> 
+        <div class="box__deco">&#10032;</div> 
         <p class="box__content">${description} <br>
         </p>
       </div>
@@ -150,7 +150,33 @@ initializeApp();
   //   document.getElementById("logg").innerHTML = 	`<button id="login" onclick="login();" class="btn-grad">CONNECT YOUR WALLET</button>`
   }
   
+  
+   
+  
+  // ------------------------------------------------
+  // BUY
+  // buyItem = async item => {
+  //   Swal.fire(
+  //     'sorry!',
+  //     'this is a work in progress... no buying just yet!',
+  //     'success'
+  //   )
 
+
+  //   user = await Moralis.User.current();
+  //   if (!user) {
+  //     login();
+  //     return;
+  //   }
+  
+  //   console.log("buyItem: ", item, " tokenObjectId: ", item.tokenObjectId);
+  //   itemBeingBought = item.tokenObjectId;
+  //   await marketplaceContract.methods.buyitem(item.uid).send({
+  //     from: user.get("ethAddress"),
+  //     value: item.askingPrice
+  //   });
+  // };
+  
     
    /*********************************************************************************************
    .) NAVBAR
@@ -336,32 +362,4 @@ initializeApp();
   
   
   
-  // document.getElementById('submit_burn').onclick = buy;
-
-    
-   
-  
-  // ------------------------------------------------
-  // BUY
-  // buyItem = async item => {
-  //   Swal.fire(
-  //     'sorry!',
-  //     'this is a work in progress... no buying just yet!',
-  //     'success'
-  //   )
-
-
-  //   user = await Moralis.User.current();
-  //   if (!user) {
-  //     login();
-  //     return;
-  //   }
-  
-  //   console.log("buyItem: ", item, " tokenObjectId: ", item.tokenObjectId);
-  //   itemBeingBought = item.tokenObjectId;
-  //   await marketplaceContract.methods.buyitem(item.uid).send({
-  //     from: user.get("ethAddress"),
-  //     value: item.askingPrice
-  //   });
-  // };
-  
+  // document.getElementById('submit_burn').onclick = burn;

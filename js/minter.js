@@ -36,18 +36,16 @@ const Toast = Swal.mixin({
     }
   
      // INICIA USUARIO
-    // let user =  Moralis.User.current();
-    // web3 = await Moralis.Web3.enable();
   let user;
-    if (!user || user === null){ 
-      document.getElementById("logger").innerHTML = 	`<button id="login" onclick="login();" class="btn-grad">CONNECT WALLET</button>`
+    // if (!user || user === null){ 
+    //   document.getElementById("logger").innerHTML = 	`<button id="login" onclick="login();" class="btn-grad">CONNECT WALLET</button>`
   
-    } else{
-      let userAddress = user.get("ethAddress");
-      document.getElementById("logger").innerHTML = "<p>"+userAddress +" <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
-      console.log("user has already signed in");
-      Toast.fire( " Great!", "  You are already logged in", "success" );
-    }
+    // } else{
+    //   let userAddress = user.get("ethAddress");
+    //   document.getElementById("logger").innerHTML = "<p>"+userAddress +" <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
+    //   console.log("user has already signed in");
+    //   Toast.fire( " Great!", "  You are already logged in", "success" );
+    // }
     
   
   }
@@ -63,29 +61,25 @@ const Toast = Swal.mixin({
     let data = input.files[0];
   console.log('file to be uploaded:', data.name);
     // upload image to ipfs
-    // const imageFile = new Moralis.File(data.name, data);
-    // await imageFile.saveIPFS();
-    // let imageHash = imageFile.hash();
-
-    const form = new FormData();
-    // form.append("file", "murals6.jpg");
-    form.append(data.name, data);
     
-    fetch("https://api.nftport.xyz/v0/files", {
+    const settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://api.nftport.xyz/v0/metadata",
       "method": "POST",
       "headers": {
-        "Content-Type": "multipart/form-data",
-        "Authorization": "524a1fad-f13f-4317-8ad0-0e75e45d4b61",
-        "content-type": "multipart/form-data; boundary=---011000010111000001101001"
-      }
-    })
-    .then(response => {
+        "Content-Type": "",
+        "Authorization": "524a1fad-f13f-4317-8ad0-0e75e45d4b61"
+      },
+      "processData": false,
+      "data": "{\n  \"name\": \"Your NFT name\",\n  \"description\": \"Your NFT description\",\n  \"file_url\": \"The ipfs_url you got from the previous request response\"\n}"
+    };
+    
+    $.ajax(settings).done(function (response) {
       console.log(response);
-    })
-    .catch(err => {
-      console.error(err);
     });
 
+    
 
 
 

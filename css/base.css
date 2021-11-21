@@ -893,7 +893,8 @@ nav a:hover::after {
     /* transform: translate3d(0,0,0); */
     /* transform-style: preserve-3d; */
     transition: opacity 0.5s;
-    transition: transform 0.3s;
+    transition: transform 0.3s!important;
+	
 }
 
 /* .mcontent::before {
