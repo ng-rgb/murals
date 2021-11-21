@@ -37,15 +37,15 @@ const Toast = Swal.mixin({
   
      // INICIA USUARIO
   let user;
-    // if (!user || user === null){ 
-    //   document.getElementById("logger").innerHTML = 	`<button id="login" onclick="login();" class="btn-grad">CONNECT WALLET</button>`
+    if (!user || user === null){ 
+      document.getElementById("logger").innerHTML = 	`<button id="login" onclick="login();" class="btn-grad">CONNECT WALLET</button>`
   
-    // } else{
-    //   let userAddress = user.get("ethAddress");
-    //   document.getElementById("logger").innerHTML = "<p>"+userAddress +" <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
-    //   console.log("user has already signed in");
-    //   Toast.fire( " Great!", "  You are already logged in", "success" );
-    // }
+    } else{
+      let userAddress = user.get("ethAddress");
+      document.getElementById("logger").innerHTML = "<p>"+userAddress +" <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
+      console.log("user has already signed in");
+      Toast.fire( " Great!", "  You are already logged in", "success" );
+    }
     
   
   }
