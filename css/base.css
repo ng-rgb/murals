@@ -266,6 +266,9 @@ main {
 	filter: grayscale(1);
 	transition: filter 0.3s;
 	pointer-events: none;
+
+	/* hack */
+	border-radius: 50%;
 }
 
 .grid__item:hover .box__img:not(.box__img--original) {
@@ -481,8 +484,10 @@ main {
 		top: -5rem;
 	}
 	.box__text--bottom {
-		bottom: -5rem;
-		top: auto;
+		
+		/* hack */
+		/* bottom: -5rem;
+		top: auto; */
 	}
 	.box__text--bottomcloser {
 		bottom: -5rem;
