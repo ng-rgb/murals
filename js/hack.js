@@ -40,6 +40,14 @@ const Toast = Swal.mixin({
   
   
   /** Add from here down */
+    /** Add from here down */
+    // async function login() {
+      // addres
+    //   document.getElementById("logg").innerHTML = "<p>"+userAddress +" <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logout()'></i> </p>";
+    
+    
+    //   document.getElementById("logg").innerHTML = 	`<button id="login" onclick="login();" class="btn-grad">CONNECT YOUR WALLET</button>`
+    // }
   async function login() {
     console.log('login tryied');
     let user = Moralis.User.current();
@@ -186,14 +194,14 @@ initializeApp();
   }
   
   
-  /** Add from here down */
-  async function login() {
-    // addres
-  //   document.getElementById("logg").innerHTML = "<p>"+userAddress +" <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logout()'></i> </p>";
+  // /** Add from here down */
+  // async function login() {
+  //   // addres
+  // //   document.getElementById("logg").innerHTML = "<p>"+userAddress +" <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logout()'></i> </p>";
   
   
-  //   document.getElementById("logg").innerHTML = 	`<button id="login" onclick="login();" class="btn-grad">CONNECT YOUR WALLET</button>`
-  }
+  // //   document.getElementById("logg").innerHTML = 	`<button id="login" onclick="login();" class="btn-grad">CONNECT YOUR WALLET</button>`
+  // }
   
 
     
@@ -355,12 +363,6 @@ initializeApp();
   document.getElementById('submit_burn').onclick = burn;
 
 
-    
-  //////////////////////////
-  // BUY
-
-
-  
   
   
   //////////////////////////

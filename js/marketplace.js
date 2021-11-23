@@ -334,7 +334,7 @@ initializeApp();
     let user = Moralis.User.current();
     if (!user) {
       try {
-       let user = await Moralis.authenticate({ signingMessage: "Hello from murals!" })
+       let user = await Moralis.authenticate({ signingMessage: "Hello from cryptomurals!" })
         let userAddress =user.get('ethAddress');
         document.getElementById("logg").innerHTML = "<p>" + userAddress + " <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
         console.log('User address: ',userAddress)

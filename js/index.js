@@ -45,7 +45,7 @@ const Toast = Swal.mixin({
     let user = Moralis.User.current();
     if (!user) {
       try {
-       let user = await Moralis.authenticate({ signingMessage: "Hello from cryoptomurals!" })
+       let user = await Moralis.authenticate({ signingMessage: "Hello from cryptomurals!" })
         let userAddress =user.get('ethAddress');
         document.getElementById("logg").innerHTML = "<p>" + userAddress + " <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
         console.log('User address: ',userAddress)
@@ -186,14 +186,6 @@ initializeApp();
   }
   
   
-  /** Add from here down */
-  async function login() {
-    // addres
-  //   document.getElementById("logg").innerHTML = "<p>"+userAddress +" <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logout()'></i> </p>";
-  
-  
-  //   document.getElementById("logg").innerHTML = 	`<button id="login" onclick="login();" class="btn-grad">CONNECT YOUR WALLET</button>`
-  }
   
 
     
@@ -378,7 +370,7 @@ initializeApp();
     let user = Moralis.User.current();
     if (!user) {
       try {
-       let user = await Moralis.authenticate({ signingMessage: "Hello from cryoptomurals!" })
+       let user = await Moralis.authenticate({ signingMessage: "Hello from cryptomurals!" })
         let userAddress =user.get('ethAddress');
         Swal.fire(
             'Connect!',

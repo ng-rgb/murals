@@ -1,4 +1,54 @@
 
+   /*********************************************************************************************
+   .) MORALIS (for loggin and other quickfixes)
+   **********************************************************************************************/
+     
+
+  // 0. Check moralis
+  const serverUrl = "https://hyorvrgxcdmm.usemoralis.com:2053/server";
+  const appId = "Lx28OvD1jYsfl8Q52brKgUbJ1yGP9kWgffDg2hrU";
+  Moralis.start({ serverUrl, appId });
+ 
+   /*********************************************************************************************
+   .) LOGIN stuff
+   **********************************************************************************************/
+     
+
+
+    /** Add from here down */
+    async function login() {
+        console.log('login tryied');
+        let user = Moralis.User.current();
+        if (!user) {
+          try {
+           let user = await Moralis.authenticate({ signingMessage: "Hello from cryoptomurals!" })
+            let userAddress =user.get('ethAddress');
+            document.getElementById("logg").innerHTML = "<p>" + userAddress + " <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
+            console.log('User address: ',userAddress)
+      
+          } catch (error) {
+            console.log(error)
+          }
+        } else {
+          console.log('user is already here...');
+          Moralis.enableWeb3(); //if user has a sesion authenticate is not called so metamaks is not initiated, here we fix this
+          let userAddress =user.get('ethAddress');
+          document.getElementById("logg").innerHTML = "<p>" + userAddress + " <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
+    
+        }
+      }
+  
+   
+  
+      async function logOut() {
+        await Moralis.User.logOut();
+        document.getElementById("logg").innerHTML = `<button  class="btn-grad"   onclick="login();">Connect</button>`
+      
+        console.log("logged out");
+      }
+  
+      
+
 // .................................
 // AUCTION FUNCTIONS
 // .................................
@@ -336,3 +386,17 @@ function auctionBtn() {
   // countToEpoc(1631128966000);
   
   // fin auction functions
+
+document.getElementById("auctionStart").onclick = auctionCreate;
+
+// autofill para testing/
+// document.getElementById('input_tokenid').value = 'tokenid';
+// document.getElementById('input_tokencontract').value = 'tokencontract';
+document.getElementById('duration').value = '120';
+document.getElementById('addrA').value = '0x1c87FDF8844cbEe5DC7f0F1681C44bF3c99A0e3d';
+document.getElementById('addrB').value = '0x1c87FDF8844cbEe5DC7f0F1681C44bF3c99A0e3d';
+document.getElementById('addrC').value = '0x250317D3C001c68018ff333e75Bbdd9699fcE78E';
+document.getElementById('addrD').value = '0x9031FDE86c3c9115d302043316E97dD9ef5d3e66';
+
+
+
