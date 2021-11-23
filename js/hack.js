@@ -55,8 +55,12 @@ const Toast = Swal.mixin({
       try {
        let user = await Moralis.authenticate({ signingMessage: "Hello from cryoptomurals!" })
         let userAddress =user.get('ethAddress');
-        document.getElementById("logg").innerHTML = "<p>" + userAddress + " <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
-        console.log('User address: ',userAddress)
+
+        var x = userAddress;
+        var shortAddr = x.substring(0, 8) + "...";
+        document.getElementById("logg").innerHTML = "<p class='loged btn-grad-inv'>" + shortAddr + " <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
+
+        console.log('User address: ',userAddress);
   
       } catch (error) {
         console.log(error)
@@ -65,7 +69,10 @@ const Toast = Swal.mixin({
       console.log('user is already here...');
       Moralis.enableWeb3(); //if user has a sesion authenticate is not called so metamaks is not initiated, here we fix this
       let userAddress =user.get('ethAddress');
-      document.getElementById("logg").innerHTML = "<p>" + userAddress + " <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
+      var x = userAddress;
+      var shortAddr = x.substring(0, 8) + "...";
+      document.getElementById("logg").innerHTML = "<p class='loged btn-grad-inv'>" + shortAddr + " <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
+
 
     }
   }
@@ -179,7 +186,11 @@ initializeApp();
           console.log('user is already here...');
           Moralis.enableWeb3(); //if user has a sesion authenticate is not called so metamaks is not initiated, here we fix this
           let userAddress =user.get('ethAddress');
-          document.getElementById("logg").innerHTML = "<p>" + userAddress + " <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
+          var x = userAddress;
+          var shortAddr = x.substring(0, 8) + "...";
+          document.getElementById("logg").innerHTML = "<p class='loged btn-grad-inv'>" + shortAddr + " <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
+    
+          // document.getElementById("logg").innerHTML = "<p class='loged btn-grad-inv'>" + userAddress + " <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
     
         }
 

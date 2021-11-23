@@ -1170,6 +1170,21 @@ path.two {
  }
 
 
+ .btn-grad-inv {background-image: linear-gradient(to right, var(--c1) 0%, #514A9D  51%, var(--c2)  100%)}
+.btn-grad-inv {
+   margin: 10px;
+   padding: 15px 15px;
+   text-align: center;
+   text-transform: uppercase;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;            
+   /* box-shadow: 0 0 20px #eee; */
+   border-radius: 10px;
+   display: block;
+ }
+
+
  /* //logout */
  .logout{
 	 cursor: pointer
