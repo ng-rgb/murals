@@ -271,7 +271,7 @@ initializeApp();
     
   //////////////////////////
   // BUY
-  function initBuy() {
+  async function initBuy() {
     // burnerModal.style.display = "block";
     // console.log('showing burner modal');
     // const urlParams = new URLSearchParams(window.location.search);
@@ -285,7 +285,25 @@ initializeApp();
             'sorry!',
             'this is a work in progress... no buying just yet!',
             'success'
-          )
+          );
+
+      // const options = {
+      //   type: "erc1155",
+      //   receiver: address,
+      //   contractAddress: TOKEN_CONTRACT_ADDRESS,
+      //   tokenId: tokenId,
+      //   amount: amount,
+      //   awaitReceipt: false // should be switched to false
+      // }
+        
+      //   let tx = await Moralis.transfer(options);
+      //   console.log(tx);
+
+          // await marketplaceContract.methods.buyitem(item.uid).send({
+          //   from: user.get("ethAddress"),
+          //   value: 1
+          //   // value: item.askingPrice
+          // });
   }
   
   

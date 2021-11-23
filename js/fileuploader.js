@@ -18,7 +18,8 @@ const Toast = Swal.mixin({
     showConfirmButton: true
   });
   
- 
+  
+   
   
   ///////////////////////////////////
   // initApp
@@ -54,39 +55,6 @@ const Toast = Swal.mixin({
   //////////////////////////////////
 const NFTPORT_KEY = '524a1fad-f13f-4317-8ad0-0e75e45d4b61';
 const CHAIN = "polygon"; 
-
- 
-// import { createRequire } from 'module';
-// const require = createRequire(import.meta.url);
-
-// const fs = require('fs');
-// const fetch = require('node-fetch');
-// const FormData = require('form-data');
-
-// const form = new FormData();
-// const fileStream = fs.createReadStream('image.jpg');
-// form.append('file', fileStream);
-
-// const options = {
-//   method: 'POST',
-//   body: form,
-//   headers: {
-//     "Authorization": `${NFTPORT_KEY}`,
-//   },
-// };
-
-// fetch("https://api.nftport.xyz/v0/files", options)
-//   .then(response => {
-//     return response.json()
-//   })
-//   .then(responseJson => {
-//     // Handle the response
-//     console.log(responseJson);
-//   })
-
-
-
-
 
   async function submit() {
     console.log('submit clicked');
@@ -163,7 +131,4 @@ const CHAIN = "polygon";
 //   document.getElementById("btn-logout").onclick = logOut;
   document.getElementById("submit_button").onclick = submit;
   initApp();
-  
-
-
   
