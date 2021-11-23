@@ -437,14 +437,14 @@ main {
 	color:(var var(--c4))
 }
 
+#imgLogo{
+	display: block;
+	
+	/* width: 170px; */
+	/* width: 233px; */
+	height: 8rem;
+}
 @media screen and (min-width: 55em) {
-	#imgLogo{
-		display: block;
-		
-		/* width: 170px; */
-		/* width: 233px; */
-		height: 8rem;
-	}
 	.grid {
 		display: grid;
 		align-items: center;
@@ -1347,4 +1347,9 @@ path.two {
 
 #addrss{
 	
+}
+
+.owner{
+	position: fixed;
+    top: 0;
 }
