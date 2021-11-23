@@ -167,3 +167,102 @@ const CHAIN = "polygon";
 
 
   
+
+
+
+
+
+  // .................................
+// MINT FUNCTION
+// .................................
+// prepareNFT = async () => {
+//   if (globalMintRadio == 0) {
+//     console.log("CERO"); // error cuando reseteo la varialble muestra cero!
+//     Sweetalert2.fire({
+//       icon: "error",
+//       title: "Price!: " + "Price is not set"
+//     });
+//     return;
+//   }
+
+//   // JUST MINT
+//   if (globalMintRadio == 1) {
+//     console.log("JUST MINT");
+
+//     // 1. hide this radio
+//     modalfield.classList.add("fase1");
+//     TweenMax.staggerTo(
+//       "#modalfield, #legend , #btnCreateItem",
+//       0.5,
+//       {
+//         opacity: 0,
+//         x: -20,
+//         ease: Power2.easeIn
+//       },
+//       0.1
+//     );
+//     globalMintRadio = ""; //reseatea la variable
+//     document.querySelectorAll('input[name="radio"]').forEach(elem => {
+//       elem.disabled = true;
+//     });
+
+//     // 2. Display next
+//     a1.style.display = "grid";
+//     TweenMax.staggerFrom(
+//       "#a1 ",
+//       0.5,
+//       {
+//         opacity: 0,
+//         x: -20,
+//         ease: Power2.easeIn
+//       },
+//       0.1
+//     );
+
+//     // 3. create NFT metadata
+//     // 3.a. prepare and arrange track names
+//     //SIP, voy a probar esto de guardarlo una sola vez en la database yu reordenarlo aqui al crear la metadata
+//     let tracks = currentDraft.get("tracks");
+//     let trackNames = [];
+//     tracks.forEach(function(tracks, index) {
+//       let nftMP3FileTitle = tracks[1];
+//       let duration = tracks[3];
+//       // trackNames.push(nftMP3FileTitle,duration);
+//       trackNames.push([nftMP3FileTitle, duration]);
+//       // console.log('trackNames',nftMP3FileTitle,duration);
+//     });
+//     console.log("trackNames OUTSIDE", trackNames);
+
+//     //3.b. add track names to create NFT metadata
+//     let name = currentDraft.get("title");
+//     let description = currentDraft.get("description");
+//     let descriptionWithTrackNames = description + ", " + trackNames;
+//     let image = currentDraft.get("image");
+//     // let trackNames = currentDraft.get("trackNames");
+//     let draftId = currentDraft.id;
+//     const metadata = {
+//       name: name,
+//       description: descriptionWithTrackNames,
+//       image: image,
+//       draftId: draftId
+//     }; //used to play the tracks from the server which has the distroId - trakcs keypairs
+//     // const metadata = { name: name, description: description, image: image, draftId: draftId };//used to play the tracks from the server which has the distroId - trakcs keypairs
+//     const nftFileMetadataFile = new Moralis.File("metadata.json", {
+//       base64: btoa(JSON.stringify(metadata))
+//     });
+//     await nftFileMetadataFile.saveIPFS();
+//     const nftFileMetadataFilePath = nftFileMetadataFile.ipfs();
+//     console.log("BRAVO!: url de metadata: ", nftFileMetadataFilePath);
+//     a1.innerHTML +=
+//       '<a href="' +
+//       nftFileMetadataFilePath +
+//       '">' +
+//       nftFileMetadataFilePath +
+//       "</a>";
+//     loadera1.classList.add("success");
+
+//     // 4. make payment
+//     a2.style.display = "grid";
+//     await mintNFT(nftFileMetadataFilePath);
+//     mintedTimes(globalObjectId);
+//   }

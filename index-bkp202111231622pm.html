@@ -182,7 +182,7 @@
 
 <!-- ------------------------------------- -->
   <!-- Site footer -->
-  <footer class="site-footer">
+  <!-- <footer class="site-footer">
 	<div class="container">
 	  <div class="row">
 		<div class="col-sm-12 col-md-6">
@@ -196,8 +196,8 @@
 		<div class="col-xs-6 col-md-3">
 		  <h6>Categories</h6>
 		  <ul class="footer-links">
-			<li><a title="CRYPTOMURALS Auction" target="_blank" href="/auction.html">start auction</a></li>
-			<li><a title="CRYPTOMURALS Documentation" target="_blank" href="/rariblelazyminter.html">lazy mint</a></li>
+			<li><a title="CRYPTOMURALS Documentation" target="_blank" href="/docs/">Documentation</a></li>
+			<li><a title="CRYPTOMURALS Documentation" target="_blank" href="/rarible.html">rarible lazy mint</a></li>
 		  </ul>
 		</div>
 
@@ -227,64 +227,20 @@
 		</div>
 	  </div>
 	</div>
-</footer>
+</footer> -->
 
 
 <!-- https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js -->
 
 <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js" integrity="sha512-B8ruywf8mKA4fm0K8SrrNhO5DTokuipFEo7rEnI0RVTt9p29MJKfg8TfOVwMAFZxgI+zOF4iwOA/ByvyJ/sslw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
-<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
-
+<script>
+	
+</script>
 <script src="js/abi.js"></script>
 <script src="js/demo.js"></script>
-<script src="js/index.js"></script>
+<script src="js/marketplace.js"></script>
 		
-
-<script>
-    /* Video Popup*/
-jQuery(document).ready(function ($) {
-  // Define App Namespace
-  var popup = {
-    // Initializer
-    init: function() {
-      popup.popupVideo();
-    },
-    popupVideo : function() {
-
-    $('.video_model').magnificPopup({
-    type: 'iframe',
-    mainClass: 'mfp-fade',
-    removalDelay: 160,
-    preloader: false,
-    fixedContentPos: false,
-    gallery: {
-          enabled:true
-        }
-  });
-
-/* Image Popup*/ 
- $('.gallery_container').magnificPopup({
-      delegate: 'a',
-    type: 'image',
-    mainClass: 'mfp-fade',
-    removalDelay: 160,
-    preloader: false,
-    fixedContentPos: false,
-    gallery: {
-          enabled:true
-        }
-  });
-
-    }
-  };
-  popup.init($);
-});
-
-
-</script>
-
 
 	</body>
 </html>

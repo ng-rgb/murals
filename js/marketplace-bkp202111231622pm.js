@@ -1,6 +1,6 @@
 /*****
-CRYPTOMURALS
-Cryptourals is an NFT marketplace for artists related to cryptomurals...
+MURALS
+Murals is an NFT marketplace for artists related to murals...
 Release under MIT License by Xunorus, 2021
 http://xunorus.com
 *****/
@@ -27,76 +27,13 @@ const Toast = Swal.mixin({
   
 
 
-   /*********************************************************************************************
-   .) MORALIS (for loggin and other quickfixes)
-   **********************************************************************************************/
-     
-
-  // 0. Check moralis
-  const serverUrl = "https://hyorvrgxcdmm.usemoralis.com:2053/server";
-  const appId = "Lx28OvD1jYsfl8Q52brKgUbJ1yGP9kWgffDg2hrU";
-  Moralis.start({ serverUrl, appId });
- 
   
   
-  /** Add from here down */
-  async function login() {
-    console.log('login tryied');
-    let user = Moralis.User.current();
-    if (!user) {
-      try {
-       let user = await Moralis.authenticate({ signingMessage: "Hello from cryoptomurals!" })
-        let userAddress =user.get('ethAddress');
-        document.getElementById("logg").innerHTML = "<p>" + userAddress + " <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
-        console.log('User address: ',userAddress)
   
-      } catch (error) {
-        console.log(error)
-      }
-    } else {
-      console.log('user is already here...');
-      Moralis.enableWeb3(); //if user has a sesion authenticate is not called so metamaks is not initiated, here we fix this
-      let userAddress =user.get('ethAddress');
-      document.getElementById("logg").innerHTML = "<p>" + userAddress + " <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
-
-    }
-  }
-
-
-    // get owner hack
-async function getOwner(id,divid){
-      console.log('input',id,divid);
-      const options = { address: TOKEN_CONTRACT_ADDRESS, token_id: id, chain: CHAIN     };
-    const ownrs= await  Moralis.Web3API.token.getTokenIdOwners(options)
-    // const ownrs =   Moralis.Web3API.token.getTokenIdOwners(options)
-    // Moralis.Web3API.token.getTokenIdOwners(options)
-      console.log('owner: ',ownrs.result[0].owner_of);
-      console.log('owners amount: ',ownrs.result[0].amount);
-      
-      setTimeout(() => {
-        
-        document.getElementById("preview-"+id).innerHTML += 	`<p  onclick="owner();" class="owner btn-grad">OWNER: ${ownrs.result[0].owner_of}</p>`
-
-        // document.getElementById('"'+divid+'"').innerText +=  ownrs ;
-        // $('#nav').attr('id','nav' + appendString);
-        // var divId = '#'+divid;
-        // $(divId).append("<b>hola</b>");
-
-      }, 3000);
-
-
-      return ownrs
-}
-
-  /*********************************************************************************************
- .) NFTPORT stuff
-**********************************************************************************************/
   ////////////////////////////////////////
 // retriebe all nfts per contract
 const NFTPORT_KEY = '524a1fad-f13f-4317-8ad0-0e75e45d4b61';
-const TOKEN_CONTRACT_ADDRESS = "0x0dB4DF5E0FF20aCF2E3469d5756103A3e03cd1a1"; // creado con nftport
-// const CHAIN = "ethereum"; 
-// const CHAIN = "Rinkeby"; 
+const TOKEN_CONTRACT_ADDRESS = "0x0dB4DF5E0FF20aCF2E3469d5756103A3e03cd1a1"; 
 const CHAIN = "polygon"; 
 const parent = document.getElementById("inventory");
 const insideContent = document.getElementById("overlay");
@@ -106,20 +43,12 @@ const settings = { "async": true, "crossDomain": true, "url": `https://api.nftpo
 
 $.ajax(settings).done(function (response) {
   console.log('TOTAL NFTs: ',response.nfts.length);
-  console.log('nft info:',response);
-
-  // LOOP EACH NFT
   for (var i = 0; i < response.nfts.length; i++) {
     let token = response.nfts[i].token_id,
       caddr = response.nfts[i].contract_address,
       chain = response.nfts[i].chain;
-
-   
-    
-// API call
-    const settings = { "async": true, "crossDomain": true, "url": `https://api.nftport.xyz/v0/nfts/${caddr}/${token}?chain=${chain}`, "method": "GET", "headers": { "Content-Type": "application/json", "Authorization": `${NFTPORT_KEY}` } };
+    const settings = { "async": true, "crossDomain": true, "url": `https://api.nftport.xyz/v0/nfts/${caddr}/${token}?chain=${chain}`, "method": "GET", "headers": { "Content-Type": "application/json", "Authorization": "524a1fad-f13f-4317-8ad0-0e75e45d4b61" } };
     $.ajax(settings).done(function (x) {
-      console.log('x: ',x)
       let name = x.nft.metadata.name;
       let description = x.nft.metadata.description;
       let image = x.nft.metadata.image;
@@ -134,21 +63,15 @@ $.ajax(settings).done(function (response) {
       col.innerHTML = htmlString;
       parent.appendChild(col);
        // OVERLAY
-    let htmlStringOverlay =` <div class="box"> <div class="box__shadow"></div> <img class="box__img box__img--original" src="${image}" alt="Some image"/> <h4 class="box__text box__text--bottom"><span class="box__text-inner box__text-inner--rotated1">${token}</span></h4> </div> <div  class="overlay__content"> <h3 class="box__title box__title--straight box__title--bottom"><span class="box__title-inner">${name}</span></h3> <p class="box__content">${description} <br> </p> <p id='${token}' > </p> </div> <div class="wrapper" onclick="event.stopPropagation();initBuy();"> <a class="cta" href="#"> <span>BID</span> <span> <svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <g id="arrow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <path class="one" d="M40.1543933,3.89485454 L43.9763149,0.139296592 C44.1708311,-0.0518420739 44.4826329,-0.0518571125 44.6771675,0.139262789 L65.6916134,20.7848311 C66.0855801,21.1718824 66.0911863,21.8050225 65.704135,22.1989893 C65.7000188,22.2031791 65.6958657,22.2073326 65.6916762,22.2114492 L44.677098,42.8607841 C44.4825957,43.0519059 44.1708242,43.0519358 43.9762853,42.8608513 L40.1545186,39.1069479 C39.9575152,38.9134427 39.9546793,38.5968729 40.1481845,38.3998695 C40.1502893,38.3977268 40.1524132,38.395603 40.1545562,38.3934985 L56.9937789,21.8567812 C57.1908028,21.6632968 57.193672,21.3467273 57.0001876,21.1497035 C56.9980647,21.1475418 56.9959223,21.1453995 56.9937605,21.1432767 L40.1545208,4.60825197 C39.9574869,4.41477773 39.9546013,4.09820839 40.1480756,3.90117456 C40.1501626,3.89904911 40.1522686,3.89694235 40.1543933,3.89485454 Z" fill="#FFFFFF"></path> <path class="two" d="M20.1543933,3.89485454 L23.9763149,0.139296592 C24.1708311,-0.0518420739 24.4826329,-0.0518571125 24.6771675,0.139262789 L45.6916134,20.7848311 C46.0855801,21.1718824 46.0911863,21.8050225 45.704135,22.1989893 C45.7000188,22.2031791 45.6958657,22.2073326 45.6916762,22.2114492 L24.677098,42.8607841 C24.4825957,43.0519059 24.1708242,43.0519358 23.9762853,42.8608513 L20.1545186,39.1069479 C19.9575152,38.9134427 19.9546793,38.5968729 20.1481845,38.3998695 C20.1502893,38.3977268 20.1524132,38.395603 20.1545562,38.3934985 L36.9937789,21.8567812 C37.1908028,21.6632968 37.193672,21.3467273 37.0001876,21.1497035 C36.9980647,21.1475418 36.9959223,21.1453995 36.9937605,21.1432767 L20.1545208,4.60825197 C19.9574869,4.41477773 19.9546013,4.09820839 20.1480756,3.90117456 C20.1501626,3.89904911 20.1522686,3.89694235 20.1543933,3.89485454 Z" fill="#FFFFFF"></path> <path class="three" d="M0.154393339,3.89485454 L3.97631488,0.139296592 C4.17083111,-0.0518420739 4.48263286,-0.0518571125 4.67716753,0.139262789 L25.6916134,20.7848311 C26.0855801,21.1718824 26.0911863,21.8050225 25.704135,22.1989893 C25.7000188,22.2031791 25.6958657,22.2073326 25.6916762,22.2114492 L4.67709797,42.8607841 C4.48259567,43.0519059 4.17082418,43.0519358 3.97628526,42.8608513 L0.154518591,39.1069479 C-0.0424848215,38.9134427 -0.0453206733,38.5968729 0.148184538,38.3998695 C0.150289256,38.3977268 0.152413239,38.395603 0.154556228,38.3934985 L16.9937789,21.8567812 C17.1908028,21.6632968 17.193672,21.3467273 17.0001876,21.1497035 C16.9980647,21.1475418 16.9959223,21.1453995 16.9937605,21.1432767 L0.15452076,4.60825197 C-0.0425130651,4.41477773 -0.0453986756,4.09820839 0.148075568,3.90117456 C0.150162624,3.89904911 0.152268631,3.89694235 0.154393339,3.89485454 Z" fill="#FFFFFF"></path> </g> </svg> </span> </a> <div class='actions'> <button  onclick="event.stopPropagation();initMinterModal();"  ><span>Mint</span></button> <button  onclick="event.stopPropagation();initTransferModal();" > <span>Transfer</span>  </button> <button  onclick="event.stopPropagation();initBurnerModal();" > <span>Burn</span>  </button> </div> </div> `
+    let htmlStringOverlay =` <div class="box"> <div class="box__shadow"></div> <img class="box__img box__img--original" src="${image}" alt="Some image"/> <h4 class="box__text box__text--bottom"><span class="box__text-inner box__text-inner--rotated1">${token}</span></h4> </div> <div  class="overlay__content"> <h3 class="box__title box__title--straight box__title--bottom"><span class="box__title-inner">${name}</span></h3> <p >${description}</p> <p class="box__content">${description} <br> </p> </div> <div class="wrapper" onclick="event.stopPropagation();initBuy();"> <a class="cta" href="#"> <span>BUY</span> <span> <svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <g id="arrow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <path class="one" d="M40.1543933,3.89485454 L43.9763149,0.139296592 C44.1708311,-0.0518420739 44.4826329,-0.0518571125 44.6771675,0.139262789 L65.6916134,20.7848311 C66.0855801,21.1718824 66.0911863,21.8050225 65.704135,22.1989893 C65.7000188,22.2031791 65.6958657,22.2073326 65.6916762,22.2114492 L44.677098,42.8607841 C44.4825957,43.0519059 44.1708242,43.0519358 43.9762853,42.8608513 L40.1545186,39.1069479 C39.9575152,38.9134427 39.9546793,38.5968729 40.1481845,38.3998695 C40.1502893,38.3977268 40.1524132,38.395603 40.1545562,38.3934985 L56.9937789,21.8567812 C57.1908028,21.6632968 57.193672,21.3467273 57.0001876,21.1497035 C56.9980647,21.1475418 56.9959223,21.1453995 56.9937605,21.1432767 L40.1545208,4.60825197 C39.9574869,4.41477773 39.9546013,4.09820839 40.1480756,3.90117456 C40.1501626,3.89904911 40.1522686,3.89694235 40.1543933,3.89485454 Z" fill="#FFFFFF"></path> <path class="two" d="M20.1543933,3.89485454 L23.9763149,0.139296592 C24.1708311,-0.0518420739 24.4826329,-0.0518571125 24.6771675,0.139262789 L45.6916134,20.7848311 C46.0855801,21.1718824 46.0911863,21.8050225 45.704135,22.1989893 C45.7000188,22.2031791 45.6958657,22.2073326 45.6916762,22.2114492 L24.677098,42.8607841 C24.4825957,43.0519059 24.1708242,43.0519358 23.9762853,42.8608513 L20.1545186,39.1069479 C19.9575152,38.9134427 19.9546793,38.5968729 20.1481845,38.3998695 C20.1502893,38.3977268 20.1524132,38.395603 20.1545562,38.3934985 L36.9937789,21.8567812 C37.1908028,21.6632968 37.193672,21.3467273 37.0001876,21.1497035 C36.9980647,21.1475418 36.9959223,21.1453995 36.9937605,21.1432767 L20.1545208,4.60825197 C19.9574869,4.41477773 19.9546013,4.09820839 20.1480756,3.90117456 C20.1501626,3.89904911 20.1522686,3.89694235 20.1543933,3.89485454 Z" fill="#FFFFFF"></path> <path class="three" d="M0.154393339,3.89485454 L3.97631488,0.139296592 C4.17083111,-0.0518420739 4.48263286,-0.0518571125 4.67716753,0.139262789 L25.6916134,20.7848311 C26.0855801,21.1718824 26.0911863,21.8050225 25.704135,22.1989893 C25.7000188,22.2031791 25.6958657,22.2073326 25.6916762,22.2114492 L4.67709797,42.8607841 C4.48259567,43.0519059 4.17082418,43.0519358 3.97628526,42.8608513 L0.154518591,39.1069479 C-0.0424848215,38.9134427 -0.0453206733,38.5968729 0.148184538,38.3998695 C0.150289256,38.3977268 0.152413239,38.395603 0.154556228,38.3934985 L16.9937789,21.8567812 C17.1908028,21.6632968 17.193672,21.3467273 17.0001876,21.1497035 C16.9980647,21.1475418 16.9959223,21.1453995 16.9937605,21.1432767 L0.15452076,4.60825197 C-0.0425130651,4.41477773 -0.0453986756,4.09820839 0.148075568,3.90117456 C0.150162624,3.89904911 0.152268631,3.89694235 0.154393339,3.89485454 Z" fill="#FFFFFF"></path> </g> </svg> </span> </a> <div class='actions'> <button  onclick="event.stopPropagation();initMinterModal();"  ><span>Mint</span></button> <button  onclick="event.stopPropagation();initTransferModal();" > <span>Transfer</span>  </button> <button  onclick="event.stopPropagation();initBurnerModal();" > <span>Burn</span>  </button> </div> </div> `
     let overlay = document.createElement("div");
     overlay.className = "overlay__item";
     overlay.id="preview-"+`${token}`;
     overlay.innerHTML = htmlStringOverlay;
     insideContent.appendChild(overlay);
-    // console.log('parece que cargo todo');
+    console.log('parece que cargo todo');
     iniciar();// starts demo.js
     });
-
-   // GET OWNER (hack)
-   console.log('tokenid', token);
-   getOwner(token,token);
-
-
   }
 });
 
@@ -163,25 +86,11 @@ initializeApp();
         
         document.getElementById("logg").innerHTML = 	`<button id="login" onclick="login();" class="btn-grad">CONNECT</button>`
         
-        let user = Moralis.User.current();
-        if (!user) {
-         console.log(' user is not loggedbut we do nothing ;) ');
-            
-        } else {
-          console.log('user is already here...');
-          Moralis.enableWeb3(); //if user has a sesion authenticate is not called so metamaks is not initiated, here we fix this
-          let userAddress =user.get('ethAddress');
-          document.getElementById("logg").innerHTML = "<p>" + userAddress + " <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
-    
-        }
-
-
-
 
       } else {
         console.log("web3 is not found");
         // noWeb3();
-        Swal.fire({ title: "web3 is not found", icon: "info", html: 'A web3 enabled browser is needed to use Cryptomurals. ' + '.', showCloseButton: true, focusConfirm: false, confirmButtonText: '<i class="fa fa-thumbs-up"></i> OK', confirmButtonAriaLabel: "Thumbs up, great!" });
+        Swal.fire({ title: "web3 is not found", icon: "info", html: 'A web3 enabled browser is needed to use Murals. ' + '.', showCloseButton: true, focusConfirm: false, confirmButtonText: '<i class="fa fa-thumbs-up"></i> OK', confirmButtonAriaLabel: "Thumbs up, great!" });
       }
   }
   
@@ -348,7 +257,11 @@ initializeApp();
     const contract = new web3.eth.Contract(contractAbi,TOKEN_CONTRACT_ADDRESS );
     contract.methods.burn(address, tokenId,amount).send({from: accounts[0], value: 0})
     .on('receipt', function(receipt){
-      Swal.fire( 'Good job!', 'Item burned!', 'success' )
+      Swal.fire(
+        'Good job!',
+        'Item burned!',
+        'success'
+      )
     })
   }
   
@@ -356,13 +269,6 @@ initializeApp();
 
 
     
-  //////////////////////////
-  // BUY
-
-
-  
-  
-  
   //////////////////////////
   // BUY
   async function initBuy() {
@@ -373,40 +279,13 @@ initializeApp();
     //   console.log('nftId:', nftId);
     //   document.getElementById("burnerToken_id_input").value = nftId;//populate input
     //   document.getElementById("burnerAddress_input").value = accounts[0];//populate address
-    // let user;
-
-    let user = Moralis.User.current();
-    if (!user) {
-      try {
-       let user = await Moralis.authenticate({ signingMessage: "Hello from cryoptomurals!" })
-        let userAddress =user.get('ethAddress');
-        Swal.fire(
-            'Connect!',
-            'you have to connect your wallet to perform this action!',
-            'success'
-          );
-          
-        document.getElementById("logg").innerHTML = "<p>" + userAddress + " <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
-        console.log('User address: ',userAddress)
   
-      } catch (error) {
-        console.log(error)
-      }
-    } else{
 
-        Swal.fire(
+      Swal.fire(
             'sorry!',
             'this is a work in progress... no buying just yet!',
             'success'
           );
-    }
-    
-
-    // if (!user || user === null){ 
-    // } else{
-    // }
-
-  
 
       // const options = {
       //   type: "erc1155",
@@ -420,11 +299,11 @@ initializeApp();
       //   let tx = await Moralis.transfer(options);
       //   console.log(tx);
 
-        //   await marketplaceContract.methods.buyitem(item.uid).send({
-        //     from: user.get("ethAddress"),
-        //     value: 1
-        //     // value: item.askingPrice
-        //   });
+          // await marketplaceContract.methods.buyitem(item.uid).send({
+          //   from: user.get("ethAddress"),
+          //   value: 1
+          //   // value: item.askingPrice
+          // });
   }
   
   
@@ -434,6 +313,43 @@ initializeApp();
     
    
       
+   /*********************************************************************************************
+   .) MORALIS
+   **********************************************************************************************/
+     
+
+  // 0. Check moralis
+  const serverUrl = "https://hyorvrgxcdmm.usemoralis.com:2053/server";
+  const appId = "Lx28OvD1jYsfl8Q52brKgUbJ1yGP9kWgffDg2hrU";
+  Moralis.start({ serverUrl, appId });
+  // const TOKEN_CONTRACT_ADDRESS = "0xf1CCd9b401cb1b37eEd0fEC58752b0E07bd9A1D7"; // murals1155-v1d.sol 21-2-3-4-5-6-7
+  const token_contract_address = TOKEN_CONTRACT_ADDRESS.toLowerCase();
+  console.log(token_contract_address);
+  let currentChain = 'rinkeby';
+  
+  
+  /** Add from here down */
+  async function login() {
+    console.log('login tryied');
+    let user = Moralis.User.current();
+    if (!user) {
+      try {
+       let user = await Moralis.authenticate({ signingMessage: "Hello from murals!" })
+        let userAddress =user.get('ethAddress');
+        document.getElementById("logg").innerHTML = "<p>" + userAddress + " <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
+        console.log('User address: ',userAddress)
+  
+      } catch (error) {
+        console.log(error)
+      }
+    } else {
+      console.log('user is already here...');
+      Moralis.enableWeb3(); //if user has a sesion authenticate is not called so metamaks is not initiated, here we fix this
+      let userAddress =user.get('ethAddress');
+      document.getElementById("logg").innerHTML = "<p>" + userAddress + " <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
+
+    }
+  }
 
 
     
@@ -445,4 +361,3 @@ initializeApp();
     console.log("logged out");
   }
   
-

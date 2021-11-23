@@ -19,7 +19,7 @@
 	
 
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
-    <!-- <script src="https://unpkg.com/moralis/dist/moralis.js"></script> -->
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.all.min.js"></script>
 
   </head>
@@ -33,27 +33,71 @@
     <div class="container">
               <div id="app" class="modal-content" >
               <!-- <div class="title">CRYPTOMURALS LAZY MINTER</div> -->
-              <div class="title">IPFS IMAGE UPLOADER</div>
+              <div class="title">AUCTION LAUNCHER</div>
             
             <div id="success_message"></div>
+            
             <div class="form_element">
+                <input type="text" class="form-control" id="input_tokenid" name="description"  placeholder="NFT ID">
+            </div> 
+
+            <div class="form_element">
+                <input type="text" class="form-control" id="input_tokencontract" name="description"  placeholder="NFT CONTRACT">
+            </div> 
+            <!-- <div class="form_element">
                 <input type="number" class="form-control" id="input_name" name="name" placeholder="NFT name">
             </div> 
            <div class="form_element">
                 <input type="text" class="form-control" id="input_description" name="description"  placeholder="NFT description">
             </div> 
+    
+            <div class="form_element">
+                <button class="btn btn-primary btn-lg btn-block" id="submit_button">START AUCTION!</button>
+            </div> -->
             
+            <div>
+				<label>Duration</label>
+				<input id="auction_dur" type="number">
+			</div>
+		
+			<div>
+				<label>Artist's Address </label>
+				<input id="address_artist" type="text" maxlength="50" >
+			</div>
+
+            <div>
+				<label>Motion designer's Address </label>
+				<input id="address_motiondes" type="text" maxlength="50" >
+			</div>
             
-            
+            <div>
+				<label>CAUSE's Address </label>
+				<input id="address_cause" type="text" maxlength="50" >
+			</div>
+
+
+            <div>
+				<label>CRYPTOMURALS's Address </label>
+				<input id="address_cryptomurals" type="text" maxlength="50" >
+			</div>
+
+
+			<!-- <div>
+				<button class="btn btn-primary" id="submit_auction">START AUCTION!</button>
+			</div> -->
+
             <div class="form_element">
                 <button class="btn btn-primary btn-lg btn-block" id="submit_button">START AUCTION!</button>
             </div>
+
+
         </div>
     </div>
 
 
 
-    <script type="text/javascript" src="js/minter.js"></script>
+<script src="js/auctionabi.js"></script>
+<script type="text/javascript" src="js/minter.js"></script>
   </body>
 </html>
 

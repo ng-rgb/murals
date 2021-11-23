@@ -17,9 +17,23 @@
 //         // jquery('#qrcode').qrcode({width: 64,height: 64,text: "size doesn't matter"});
 // }
 
+// GRAB SMART CONTRACT FROM URL
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(
+      m,
+      key,
+      value
+    ) {
+      vars[key] = value;
+    });
+    console.log('auction urlvars:',vars );
+    return vars;
+  }
+  
 function auctionBtn() {
-    auction.style.display = "block";
-    document.getElementById("header").style.display = "none";
+    // auction.style.display = "block";
+    // document.getElementById("header").style.display = "none";
     // document.getElementById('auctionCancelBtn').style.display = 'none';
   }
   
@@ -30,12 +44,18 @@ function auctionBtn() {
   }
   async function auctionCreate() {
     if (addrA.value.length == 0) {
-      alert("Please enter eth address of artist A");
+      alert("Please enter eth address of artist");
       return;
     } else if (addrB.value.length == 0) {
-      alert("Please enter eth address of artist B");
+      alert("Please enter eth address of Motion designer");
       return;
-    } else if (duration.value.length == 0) {
+    } else if (addrC.value.length == 0) {
+        alert("Please enter eth address of CAUSE");
+        return;
+      } else if (addrD.value.length == 0) {
+        alert("Please enter eth address of Cryptomurals");
+        return;
+      } else if (duration.value.length == 0) {
       alert("Please enter auction's duration");
       return;
     }
@@ -45,14 +65,21 @@ function auctionBtn() {
     // }
   
     // console.log('estos son los parametros ingresados: ',[duration.value ,addrA.value, addrB.value] );
+    // console.log('estos son los parametros ingresados: ',[duration.value ,addrA.value, addrB.value, addrC.value, addrD.value] );
     // console.log('auction json: ',auctionTruffleContractAbi);
-    // const A = 100;
+    // const A = 120;// 2minutos
     // const B = '0x63b0afeed4f2C2c4ca0D4A98AEe93A303304dF41';
     // const C = '0x8Ab2A64D0767140ADc2886EAB4ac2e9a48fda03b';
+
+    //artist = '0x1c87FDF8844cbEe5DC7f0F1681C44bF3c99A0e3d'; // unorus, mi wallet
+    //motionDesigner = ''; ///addres nat
+    // cause = '0x250317D3C001c68018ff333e75Bbdd9699fcE78E'; // la tengo en mi wallet
+// cryptomurals ='0x9031FDE86c3c9115d302043316E97dD9ef5d3e66';
   
     window.web3 = await Moralis.Web3.enable();
-    // const userAddress = user.get('ethAddress');
-    const userAddress = currentUser;
+    const userAddress = user.get('ethAddress');
+    // const userAddress = currentUser;
+
     MyContract = new web3.eth.Contract(auctionContractAbi); // abi de remix
     await MyContract.deploy({
       data: auctionBitecode, //tomado de truffle
