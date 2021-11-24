@@ -132,10 +132,11 @@ $.ajax(settings).done(function (response) {
 // API call
     const settings = { "async": true, "crossDomain": true, "url": `https://api.nftport.xyz/v0/nfts/${caddr}/${token}?chain=${chain}`, "method": "GET", "headers": { "Content-Type": "application/json", "Authorization": `${NFTPORT_KEY}` } };
     $.ajax(settings).done(function (x) {
-      // console.log('x: ',x)
+      console.log('x: ',x)
       let name = x.nft.metadata.name;
       let description = x.nft.metadata.description;
-      let image = x.nft.metadata.image;
+      // let image = x.nft.metadata.image;
+      let image = x.nft.cached_file_url;// cached file, recommended byNiladri | Data Scientist@NFTPort
       let token = x.nft.token_id;
       let contract = x.nft.contract_address;
       let chain  = x.nft.chain;
@@ -280,7 +281,9 @@ initializeApp();
       const nftId = urlParams.get("nftId");
       console.log('nftId:', nftId);
       document.getElementById("token_id_input").value = nftId;//populate input
-      document.getElementById("address_input").value = accounts[0];//populate address
+      // document.getElementById("address_input").value = accounts[0];//populate address
+      document.getElementById("address_input").value = user.get("ethAddress");//populate address
+
   }
   
   async function mint(){
@@ -290,7 +293,9 @@ initializeApp();
     //define contract
     const accounts = await web3.eth.getAccounts();
     const contract = new web3.eth.Contract(contractAbi,TOKEN_CONTRACT_ADDRESS );
-    contract.methods.mint(address, tokenId,amount).send({from: accounts[0], value: 0})
+    contract.methods.mint(address, tokenId,amount).send({
+    from: user.get("ethAddress"),
+     value: 0})
     .on('receipt', function(receipt){
       Swal.fire(
         'Good job!',
@@ -344,23 +349,29 @@ initializeApp();
   function initBurnerModal() {
     burnerModal.style.display = "block";
     console.log('showing burner modal');
+    let user = Moralis.User.current();
+    if (!user) { Swal.fire( 'Connect!', 'you have to connect your wallet to perform this action!', 'info' ); }
+
     const urlParams = new URLSearchParams(window.location.search);
       const nftId = urlParams.get("nftId");
       console.log('nftId:', nftId);
       document.getElementById("burnerToken_id_input").value = nftId;//populate input
-      document.getElementById("burnerAddress_input").value = accounts[0];//populate address
+      document.getElementById("burnerAddress_input").value = user.get("ethAddress");//populate address
   
+      console.log('burn from address: ' , user.get("ethAddress"))
   }
   
   // burn(address account, uint256 id, uint256 value)
   async function burn(){
     let tokenId = parseInt( document.getElementById("burnerToken_id_input").value);
-    let address = document.getElementById("burnerAddress_input").value;
     let amount =  parseInt(document.getElementById("burnerAmount_input").value);
+    let address = document.getElementById("burnerAddress_input").value;
     //define contract
-    const accounts = await web3.eth.getAccounts();
+    // const accounts = await web3.eth.getAccounts();
     const contract = new web3.eth.Contract(contractAbi,TOKEN_CONTRACT_ADDRESS );
-    contract.methods.burn(address, tokenId,amount).send({from: accounts[0], value: 0})
+    contract.methods.burn(address, tokenId,amount).send({
+    from: user.get("ethAddress"),
+      value: 0})
     .on('receipt', function(receipt){
       Swal.fire( 'Good job!', 'Item burned!', 'success' )
     })
