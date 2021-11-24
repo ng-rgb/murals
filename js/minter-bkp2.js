@@ -254,69 +254,6 @@ prepareNFT = async () => {
 
 
 
-  async function submit() {
-    console.log('submit clicked');
-  
-
-    
-    //get image data
-    const input = document.querySelector('#input_image');
-    let data = input.files[0];
-  
-    // upload image to ipfs
-    // https://docs.nftport.xyz/docs/nftport/b3A6MjE0MDYzNzY-upload-a-file-to-ipfs
-    const imageFile = new Moralis.File(data.name, data);
-    await imageFile.saveIPFS();
-    let imageHash = imageFile.hash();
-    console.log(imageHash);
-    console.log(imageFile.ipfs());
-  
-    let name = nftName.value;
-    let description = nftDesc.value;
-    // let image = image.value;//fake
-    let video = vidLink.value;
-    let geo = geoInfo.value;
-    let qr = qrlink.value;
-
-
-    let metadata = {
-      name: name,
-      description: description,
-      image: "/ipfs/" + imageHash
-      videoLink: video,
-      geoInfo: geo,
-      qrLink: qr
-    }; 
-
-    console.log('metadata: ', metadata);
-
-    //create metadata with image hash and data
-    // let metadata = {
-    //   name: document.querySelector('#input_name').value,
-    //   description: document.querySelector('#input_description').value,
-    //   image: "/ipfs/" + imageHash
-    // }
-  
-    // upload metadata to ipfs
-    const jsonFile = new Moralis.File('metadata.json', {
-      base64: btoa(JSON.stringify(metadata))
-    });
-    await jsonFile.saveIPFS();
-    let metadataHash = jsonFile.hash();
-    console.log(metadataHash);
-  
-    //CUSTOMIZABLE MINTING NFT with NFTPORT
-    // https://nftport.stoplight.io/docs/nftport/b3A6MjE2NjM5MDI-customizable-minting
-
-
-    
-  }
-
-
-
-
-
-
 // MINT!
 mintNFT = async metadataUrl => {
   const receipt = await tokenContract.methods

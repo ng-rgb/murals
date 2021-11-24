@@ -41,8 +41,7 @@
 
     <div class="container">
               <div id="app" class="modal-content" >
-              <!-- <div class="title">CRYPTOMURALS LAZY MINTER</div> -->
-              <div class="title">AUCTION LAUNCHER</div>
+              <div class="title">MINT UPDATER</div>
             
             <div id="success_message"></div>
             
@@ -53,41 +52,12 @@
             <div class="form_element">
                 <input type="text" class="form-control" id="input_tokencontract" name="description"  placeholder="NFT CONTRACT">
             </div> 
-   
-            
-            <div>
-				<label>Duration</label>
-				<input id="duration" type="number">
-			</div>
-		
-			<div>
-				<label>Artist's Address </label>
-				<input id="addrA" type="text" maxlength="50" >
-			</div>
-
-            <div>
-				<label>Motion designer's Address </label>
-				<input id="addrB" type="text" maxlength="50" >
-			</div>
-            
-            <div>
-				<label>FESTIVAL's Address </label>
-				<input id="addrC" type="text" maxlength="50" >
-			</div>
-
-
-            <div>
-				<label>CRYPTOMURALS's Address </label>
-				<input id="addrD" type="text" maxlength="50" >
-			</div>
-
-
-			<!-- <div>
-				<button class="btn btn-primary" id="submit_auction">START AUCTION!</button>
-			</div> -->
-
             <div class="form_element">
-                <button class="btn btn-primary btn-lg btn-block" id="auctionStart">START AUCTION!</button>
+                <input type="file" class="form-control" accept="image/png, image/jpeg" id="input_image" name="image"  placeholder="NFT image">
+            </div>
+            
+            <div class="form_element">
+                <button class="btn btn-primary btn-lg btn-block" id="mintupdater">UPDATE NFTs!</button>
             </div>
 
         </div>
@@ -95,10 +65,7 @@
 
     <div id="contractInfo"></div>
 
-
-
-<script src="js/auctionabi.js"></script>
-<script type="text/javascript" src="js/auction.js"></script>
+<script type="text/javascript" src="js/mintUpdater.js"></script>
   </body>
 </html>
 

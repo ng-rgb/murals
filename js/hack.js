@@ -39,15 +39,11 @@ const Toast = Swal.mixin({
  
   
   
-  /** Add from here down */
-    /** Add from here down */
-    // async function login() {
-      // addres
-    //   document.getElementById("logg").innerHTML = "<p>"+userAddress +" <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logout()'></i> </p>";
-    
-    
-    //   document.getElementById("logg").innerHTML = 	`<button id="login" onclick="login();" class="btn-grad">CONNECT YOUR WALLET</button>`
-    // }
+   /*********************************************************************************************
+   .) LOGG stuff
+   **********************************************************************************************/
+     
+//  LOGIN
   async function login() {
     console.log('login tryied');
     let user = Moralis.User.current();
@@ -77,8 +73,18 @@ const Toast = Swal.mixin({
     }
   }
 
+  // LOGOUT
+  async function logOut() {
+    await Moralis.User.logOut();
+    document.getElementById("logg").innerHTML = `<button  class="btn-grad"   onclick="login();">Connect</button>`
+  
+    console.log("logged out");
+  }
+  
 
-    // get owner hack
+   /*********************************************************************************************
+   .) GET OWNER hack
+   **********************************************************************************************/
 async function getOwner(id,divid){
       console.log('input',id,divid);
       const options = { address: TOKEN_CONTRACT_ADDRESS, token_id: id, chain: CHAIN     };
@@ -89,14 +95,7 @@ async function getOwner(id,divid){
       console.log('owners amount: ',ownrs.result[0].amount);
       
       setTimeout(() => {
-        
         document.getElementById("preview-"+id).innerHTML += 	`<p  onclick="owner();" class="owner btn-grad">OWNER: ${ownrs.result[0].owner_of}</p>`
-
-        // document.getElementById('"'+divid+'"').innerText +=  ownrs ;
-        // $('#nav').attr('id','nav' + appendString);
-        // var divId = '#'+divid;
-        // $(divId).append("<b>hola</b>");
-
       }, 3000);
 
 
@@ -167,7 +166,12 @@ $.ajax(settings).done(function (response) {
   }
 });
 
-initializeApp();
+
+  /*********************************************************************************************
+ .) INITIALIZE DAPP
+**********************************************************************************************/
+
+// initializeApp();
   
   async function initializeApp(){
       console.log("iniciar has benn triggered");
@@ -180,7 +184,7 @@ initializeApp();
         
         let user = Moralis.User.current();
         if (!user) {
-         console.log(' user is not loggedbut we do nothing ;) ');
+         console.log(' user is not logged but we do nothing ;) ');
             
         } else {
           console.log('user is already here...');
@@ -205,16 +209,8 @@ initializeApp();
   }
   
   
-  // /** Add from here down */
-  // async function login() {
-  //   // addres
-  // //   document.getElementById("logg").innerHTML = "<p>"+userAddress +" <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logout()'></i> </p>";
-  
-  
-  // //   document.getElementById("logg").innerHTML = 	`<button id="login" onclick="login();" class="btn-grad">CONNECT YOUR WALLET</button>`
-  // }
-  
-
+initializeApp();
+ 
     
    /*********************************************************************************************
    .) NAVBAR
@@ -450,12 +446,3 @@ initializeApp();
 
 
     
-  
-  async function logOut() {
-    await Moralis.User.logOut();
-    document.getElementById("logg").innerHTML = `<button  class="btn-grad"   onclick="login();">Connect</button>`
-  
-    console.log("logged out");
-  }
-  
-

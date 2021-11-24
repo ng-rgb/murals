@@ -1,64 +1,118 @@
 <!DOCTYPE html>
 <html>
-  <head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>CRYPTOMURALS DAPP</title>
-		<meta name="description" content="CryptoMurals NFTs marketplace" />
-		<meta name="keywords" content="buy and sell NFTs curated contents" />
-		<meta name="author" content="Xunorus" />
-		<link rel="shortcut icon" href="favicon.ico">
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-		
-    <link href="css/hamburgers.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="css/base.css" />
-	<script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
-	
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CRYPTOMURALS DAPP</title>
+  <meta name="description" content="CryptoMurals NFTs marketplace" />
+  <meta name="keywords" content="buy and sell NFTs curated contents" />
+  <meta name="author" content="Xunorus" />
+  <link rel="shortcut icon" href="favicon.ico">
 
-    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
-    <!-- <script src="https://unpkg.com/moralis/dist/moralis.js"></script> -->
-		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.all.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-  </head>
+  <link href="css/hamburgers.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/base.css" />
+  <script>
+    document.documentElement.className = "js";
+    var supportsCssVars = function () {
+      var e, t = document.createElement("style");
+      return t.innerHTML = "root: { --tmp-var: bold; }", document.head.appendChild(t), e = !!(window.CSS && window.CSS
+        .supports && window.CSS.supports("font-weight", "var(--tmp-var)")), t.parentNode.removeChild(t), e
+    };
+    supportsCssVars() || alert("Please view this demo in a modern browser that supports CSS Variables.");
+  </script>
 
-  <body>
-	<div class=" text-wrap" id="logger"> 
-    <button id="btn-login" class="btn-grad">Login</button>
-    <!-- <button id="btn-logout">Logout</button> -->
-</div>
 
-    <div class="container">
-              <div id="app" class="modal-content" >
-              <!-- <div class="title">CRYPTOMURALS LAZY MINTER</div> -->
-              <div class="title">IPFS IMAGE UPLOADER</div>
-            
-            <div id="success_message"></div>
-            <!-- <div class="form_element">
-                <input type="text" class="form-control" id="input_name" name="name" placeholder="NFT name">
-            </div> -->
-            
-            <!-- <div class="form_element">
-                <input type="text" class="form-control" id="input_description" name="description"  placeholder="NFT description">
-            </div> -->
-            
-            <div class="form_element">
-                <input type="file" class="form-control" accept="image/png, image/jpeg" id="input_image" name="image"  placeholder="NFT image">
-            </div>
-            
-            <div class="form_element">
-                <button class="btn btn-primary btn-lg btn-block" id="submit_button">Submit</button>
-            </div>
-        </div>
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.all.min.js"></script>
+
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header>
+    <button class="hamburger  hamburger--collapse" type="button" id="button" onclick="connect();" value="before">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+    <img id="imgLogo" src="logo_cryptomurals.svg" />
+
+    <div class=" text-wrap" id="logg">
+    </div>
+  </header>
+
+
+  <div class="container">
+    <div id="app" class="modal-content">
+      <div class="title">CRYPTOMURALS MINTER</div>
+
+      <div id="success_message"></div>
+
+      <div class="form_element">
+        <label>NFT Name </label>
+        <input id="nftName" type="text" maxlength="50">        
+      </div>
+
+      <div class="form_element">
+          <label>NFT Description </label>
+        <textarea id="nftDesc" name="tutorial" rows="5" cols="40" placeholder="Enter you description here"></textarea>
+      </div>
+
+
+      <!-- <div>
+        <label>Duration</label>
+        <input id="duration" type="number">
+      </div> -->
+
+      <div class="form_element">
+        <input type="file" class="form-control" accept="image/png, image/jpeg" id="input_image" name="image"  placeholder="NFT image">
     </div>
 
+      <div>
+        <label>Video link </label>
+        <input id="vidLink" type="text" maxlength="50">
+      </div>
 
 
-    <script type="text/javascript" src="js/minter.js"></script>
-  </body>
+      <div>
+        <label>Geo Info </label>
+        <input id="geoInfo" type="text" maxlength="50">
+      </div>
+
+      <div>
+        <label>qr link </label>
+        <input id="qrlink" type="text" maxlength="50">
+      </div>
+
+      <!-- <div>
+				<button class="btn btn-primary" id="submit_auction">START AUCTION!</button>
+			</div> -->
+
+      <div class="form_element">
+        <button class="btn btn-primary btn-lg btn-block" id="submit_mint">MINT!</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="contractInfo"></div>
+
+
+
+  <script src="js/auctionabi.js"></script>
+  <script type="text/javascript" src="js/minter.js"></script>
+</body>
+
 </html>
+
+<!-- upload file to ipfs -->
+<!-- https://docs.nftport.xyz/docs/nftport/b3A6MjE0MDYzNzY-upload-a-file-to-ipfs -->
 
 <!-- upload file to ipfs -->
 <!-- https://docs.nftport.xyz/docs/nftport/b3A6MjE0MDYzNzY-upload-a-file-to-ipfs -->
