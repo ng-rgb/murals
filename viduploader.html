@@ -25,80 +25,41 @@
   </head>
 
   <body>
+
 <!-- HEADER -->
 <header>
-	<button class="hamburger  hamburger--collapse" type="button" id="button" onclick="connect();" value="before">
-	  <span class="hamburger-box">
-		<span class="hamburger-inner"></span>
-	  </span>
-	</button>
-	<img id="imgLogo" src="logo_cryptomurals.svg" />
-  
-	<div class=" text-wrap" id="logg">
-	</div>
+    <button class="hamburger  hamburger--collapse" type="button" id="button" onclick="connect();" value="before">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+    <img id="imgLogo" src="logo_cryptomurals.svg" />
+    <div class=" text-wrap" id="logg">
+    </div>
   </header>
   
 
     <div class="container">
               <div id="app" class="modal-content" >
-              <!-- <div class="title">CRYPTOMURALS LAZY MINTER</div> -->
-              <div class="title">AUCTION LAUNCHER</div>
+              <div class="title">IPFS MEDIA UPLOADER</div>
             
             <div id="success_message"></div>
-            
+        
             <div class="form_element">
-                <input type="text" class="form-control" id="input_tokenid" name="description"  placeholder="NFT ID">
-            </div> 
-
-            <div class="form_element">
-                <input type="text" class="form-control" id="input_tokencontract" name="description"  placeholder="NFT CONTRACT">
-            </div> 
-   
-            
-            <div>
-				<label>Duration(secs)</label>
-				<input id="duration" type="number">
-			</div>
-		
-			<div>
-				<label>Artist's Address </label>
-				<input id="addrA" type="text" maxlength="50" >
-			</div>
-
-            <div>
-				<label>Motion designer's Address </label>
-				<input id="addrB" type="text" maxlength="50" >
-			</div>
-            
-            <div>
-				<label>FESTIVAL's Address </label>
-				<input id="addrC" type="text" maxlength="50" >
-			</div>
-
-
-            <div>
-				<label>CRYPTOMURALS's Address </label>
-				<input id="addrD" type="text" maxlength="50" >
-			</div>
-
-
-			<!-- <div>
-				<button class="btn btn-primary" id="submit_auction">START AUCTION!</button>
-			</div> -->
-
-            <div class="form_element">
-                <button class="btn btn-primary btn-lg btn-block" id="auctionStart">START AUCTION!</button>
+                <input type="file" class="form-control" accept="image/*,video/mp4,audio/*" id="input_image" name="image"  placeholder="NFT image">
             </div>
-
+            
+            <div class="form_element">
+                <button class="btn btn-primary btn-lg btn-block" id="submit_button">Upload</button>
+            </div>
         </div>
     </div>
 
-    <div id="contractInfo"></div>
 
 
-
-<script src="js/auctionabi.js"></script>
-<script type="text/javascript" src="js/auction.js"></script>
+    <script type="text/javascript" src="js/ipfsviduploader.js"></script>
   </body>
 </html>
 
+<!-- upload file to ipfs -->
+<!-- https://docs.nftport.xyz/docs/nftport/b3A6MjE0MDYzNzY-upload-a-file-to-ipfs -->

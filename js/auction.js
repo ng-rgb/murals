@@ -413,12 +413,16 @@ function countToEpoc(t) {
 
 document.getElementById("auctionStart").onclick = auctionCreate;
 
-// autofill para testing/
+
+// .................................
+// AUTOFILL PARA TESTING!
+// .................................
+
 // document.getElementById('input_tokenid').value = 'tokenid';
 // document.getElementById('input_tokencontract').value = 'tokencontract';
 document.getElementById('duration').value = '120';
 document.getElementById('addrA').value = '0x1c87FDF8844cbEe5DC7f0F1681C44bF3c99A0e3d';
-document.getElementById('addrB').value = '0x1c87FDF8844cbEe5DC7f0F1681C44bF3c99A0e3d';
+document.getElementById('addrB').value = '0xe4458d575e5D6867e6A9e52dED44cef8c0F888F8';
 document.getElementById('addrC').value = '0x250317D3C001c68018ff333e75Bbdd9699fcE78E';
 document.getElementById('addrD').value = '0x9031FDE86c3c9115d302043316E97dD9ef5d3e66';
 

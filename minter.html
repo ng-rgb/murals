@@ -54,24 +54,21 @@
 
       <div id="success_message"></div>
 
+
+
       <div class="form_element">
-        <label>NFT Name </label>
-        <input id="nftName" type="text" maxlength="50">        
+        <input type="text" class="form-control" id="nftName" name="description"  placeholder="NFT Name">
+    </div> 
+
+      <div class="form_element">
+          <!-- <label>NFT Description </label> -->
+        <textarea id="nftDesc" class="form-control" name="tutorial" rows="5" cols="40" placeholder="Enter you description here"></textarea>
       </div>
 
+
+ 
       <div class="form_element">
-          <label>NFT Description </label>
-        <textarea id="nftDesc" name="tutorial" rows="5" cols="40" placeholder="Enter you description here"></textarea>
-      </div>
-
-
-      <!-- <div>
-        <label>Duration</label>
-        <input id="duration" type="number">
-      </div> -->
-
-      <div class="form_element">
-        <input type="file" class="form-control" accept="image/png, image/jpeg" id="input_image" name="image"  placeholder="NFT image">
+        <input type="file" class="form-control" accept="image/png, image/jpeg" id="nftimg" name="image"  placeholder="NFT image">
     </div>
 
       <div>
