@@ -181,7 +181,7 @@ initializeApp();
 const NFTPORT_KEY = '524a1fad-f13f-4317-8ad0-0e75e45d4b61';
 const TOKEN_CONTRACT_ADDRESS = "0x95c5B3a20e6f8a352B82236271756Ed83d4030b0"; // creado con nftport
 const TOKEN_ID = "1370968920948363123531424230230201071445727871152"; // creado con nftport
-const TO_ADDRESS = "0x23620BC1ce5FA0d55b767061a7307CC44Ab7099B"; // creado con nftport
+// const TO_ADDRESS = "0x23620BC1ce5FA0d55b767061a7307CC44Ab7099B"; // creado con nftport
 const CHAIN = "polygon"; 
 
 const settings = {

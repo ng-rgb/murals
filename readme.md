@@ -33,4 +33,10 @@ ex.
 
 # how it works
 - all files are uploaded to IPFS
-- nftport is used to display NFTs and interact with them()
+- nftport is used to display NFTs and interact
+
+
+# notes
+- marketplace listens to nft in created contract (line 112 index.js)
+- minter.html mints into contract and transfer ownership to address
+- auction smart contract is in folder contracts/collabAuction.sol

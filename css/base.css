@@ -403,6 +403,9 @@ main {
 
 	color: var(--c0 ); 
 
+	height: 51%;
+    z-index: 1;
+
 }
 
 .overlay__content h3 {

@@ -200,3 +200,13 @@ $.ajax(settings).done(function (response) {
 
 
 ### How to update the metadata of the NFT
+
+
+
+-------
+1.{
+  "response": "OK",
+  "chain": "rinkeby",
+  "contract_address": "0x38a554984cf2205f7903123adeb6d560f46625e8",
+  "transaction_hash": "0x19ff77a6faebb740168689dfbf0feb63dc4c4b3797235fc8111716f2383e1715"
+}
