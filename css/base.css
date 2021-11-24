@@ -899,9 +899,10 @@ nav a:hover::after {
 }
 
 #sidebarContent{
-	top: 4em;
+	/* top: 4em; */
+	top: 7em;
     position: fixed;
-}
+
 }
 .mcontent {
     flex: 1;
