@@ -765,6 +765,8 @@ main {
 a {
   text-decoration: none;
   color: inherit;
+  color: blueviolet;
+
 }
 
 body {
