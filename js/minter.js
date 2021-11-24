@@ -229,13 +229,13 @@
      const NFTPORT_KEY = '524a1fad-f13f-4317-8ad0-0e75e45d4b61';
 
 
-     //  const TOKEN_CONTRACT_ADDRESS = "0x370eC37DE385722b17D46364A0Af9F747dDA1Ee9"; // owner nat. creado con nftport
-    //  const TO_ADDRESS = "0xe4458d575e5D6867e6A9e52dED44cef8c0F888F8"; // dir nat
+      const TOKEN_CONTRACT_ADDRESS = "0x370eC37DE385722b17D46364A0Af9F747dDA1Ee9"; // owner nat. creado con nftport
+     const TO_ADDRESS = "0xe4458d575e5D6867e6A9e52dED44cef8c0F888F8"; // dir nat
     
     
     // const TOKEN_CONTRACT_ADDRESS = "0x95c5B3a20e6f8a352B82236271756Ed83d4030b0"; // owner xun. creado con nftport
-    const TOKEN_CONTRACT_ADDRESS = "0x7C64C82798a355DA6ced94642960A7F11C07A05a"; // owner xun. creado con nftport para FINAL
-     const TO_ADDRESS = "0x9031FDE86c3c9115d302043316E97dD9ef5d3e66"; // dir xun 
+    // const TOKEN_CONTRACT_ADDRESS = "0x7C64C82798a355DA6ced94642960A7F11C07A05a"; // owner xun. creado con nftport para FINAL
+    //  const TO_ADDRESS = "0x9031FDE86c3c9115d302043316E97dD9ef5d3e66"; // dir xun 
     
      
     const CHAIN = "polygon";
