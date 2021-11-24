@@ -41,20 +41,54 @@
 
     <div class="container">
               <div id="app" class="modal-content" >
-              <div class="title">MINT UPDATER</div>
+              <div class="title">CRYPTOMURALS MINT UPDATER</div>
             
             <div id="success_message"></div>
             
             <div class="form_element">
-                <input type="text" class="form-control" id="input_tokenid" name="description"  placeholder="NFT ID">
+                <input type="text" class="form-control" id="input_tokenid" name="token id"  placeholder="NFT ID">
             </div> 
 
             <div class="form_element">
-                <input type="text" class="form-control" id="input_tokencontract" name="description"  placeholder="NFT CONTRACT">
+                <input type="text" class="form-control" id="input_tokencontract" name="contract"  placeholder="NFT CONTRACT">
             </div> 
-            <div class="form_element">
-                <input type="file" class="form-control" accept="image/png, image/jpeg" id="input_image" name="image"  placeholder="NFT image">
-            </div>
+
+            
+
+
+
+      <div class="form_element">
+        <input type="text" class="form-control" id="nftName" name="description"  placeholder="NFT Name">
+    </div> 
+
+      <div class="form_element">
+        <textarea id="nftDesc" class="form-control" name="tutorial" rows="5" cols="40" placeholder="Enter you description here"></textarea>
+      </div>
+
+
+ 
+      <div class="form_element">
+        <input type="file" class="form-control" accept="image/png, image/jpeg" id="nftimg" name="image"  placeholder="NFT image">
+    </div>
+
+      <div>
+        <label>Video link </label>
+        <input id="vidLink" type="text" maxlength="50">
+      </div>
+
+
+      <div>
+        <label>Geo Info </label>
+        <input id="geoInfo" type="text" maxlength="50">
+      </div>
+
+      <div>
+        <label>qr link </label>
+        <input id="qrlink" type="text" maxlength="50">
+      </div>
+
+
+
             
             <div class="form_element">
                 <button class="btn btn-primary btn-lg btn-block" id="mintupdater">UPDATE NFTs!</button>

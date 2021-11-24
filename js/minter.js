@@ -128,131 +128,6 @@ initializeApp();
   ///////////////////////////////////
   // SUBMIT
   //////////////////////////////////
-// const NFTPORT_KEY = '524a1fad-f13f-4317-8ad0-0e75e45d4b61';
-// const CHAIN = "polygon"; 
-
-//   async function submit() {
-//     console.log('submit clicked');
-  
-//     //get image data
-//     const input = document.querySelector('#input_image');
-//     let data = input.files[0];
-//     let datax = $('#input_image')[0].files[0];
-
-//   console.log('file to be uploaded:', datax);
-
-
-  
-//     // upload image to ipfs
-//     const form = new FormData();
-//     form.append("file", datax);
-    
-//     const settings = {
-//       "async": true,
-//       "crossDomain": true,
-//       "url": "https://api.nftport.xyz/v0/files",
-//       "method": "POST",
-//       "headers": {
-//         "Content-Type": "multipart/form-data",
-//         "Authorization": `${NFTPORT_KEY}`
-//       },
-//       "processData": false,
-//       "contentType": false,
-//       "mimeType": "multipart/form-data",
-//       "data": form
-//     };
-    
-//     $.ajax(settings).d
-//     one(function (response) {
-//       console.log(response);
-//     });
-//   }
-
-  // document.getElementById("submit_mint").onclick = submit;
-  // initApp();
-  
-
-  
-  
-
-
-
-
-
-  // .................................
-// MINT FUNCTION
-// .................................
-
-// // MINT
-// mint.onclick = function() {
-//   minterModal.style.display = "block";
-
-// };
-
-// // CLOSE MODAL
-// let closeModal = document.getElementsByClassName("closeModal");
-// for (i = 0; i < closeModal.length; i++) {
-//   closeModal[i].onclick = function() {
-//     addTracksModal.style.display = "none";
-//     minterModal.style.display = "none";
-//     addArtistModal.style.display = "none";
-//   };
-// }
-
-// uploadImg = async img => {
-//   const nftFile = new Moralis.File("nftFile.png", img);
-//   await nftFile.saveIPFS(); // upload to ipfs
-//   const nftFilePath = nftFile.ipfs();
-//   updateDraft(currentDraft, "image", nftFilePath);
-//   console.log("image uploaded to ipfs: ", nftFilePath);
-// };
-
-
-// .................................
-// MINT FUNCTIONs
-// prepareNFT = async () => {
-  
-//   // 1. Upload img to IPFS
-
-//     // 3. create NFT metadata
-
-//     let name = nftName.value;
-//     let description = nftDesc.value;
-//     // let image = image.value;//fake
-//     let video = vidLink.value;
-//     let geo = geoInfo.value;
-//     let qr = qrlink.value;
-
-
-//     const metadata = {
-//       name: name,
-//       description: description,
-//       image: image,
-//       videoLink: video,
-//       geoInfo: geo,
-//       qrLink: qr
-//     }; 
-
-//     const nftFileMetadataFile = new Moralis.File("metadata.json", {
-//       base64: btoa(JSON.stringify(metadata))
-//     });
-
-//     await nftFileMetadataFile.saveIPFS();
-
-
-//     const nftFileMetadataFilePath = nftFileMetadataFile.ipfs();
-
-//     console.log("BRAVO!: url de metadata: ", nftFileMetadataFilePath);
-//     a1.innerHTML += '<a href="' + nftFileMetadataFilePath + '">' + nftFileMetadataFilePath + "</a>"; loadera1.classList.add("success");
-
-//     // 4. make payment
-//     a2.style.display = "grid";
-//     await mintNFT(nftFileMetadataFilePath);
-//     // mintedTimes(globalObjectId);
-//   }
-
-
-
 
   async function submit() {
     console.log('submit clicked');
@@ -288,12 +163,13 @@ initializeApp();
     let imageHash = imageFile.hash();
     console.log(imageHash);
    let imageLink = "ipfs://" + imageHash;
+   let imageLinknftport = "/ipfs/" + imageHash;
 
    // SHOW OPERATION DETAILS;
-document.querySelector('#success_message').innerHTML +=`File uploaded to IPFS:<i class="fa fa-check" aria-hidden="true"></i><br> ${imageLink} .<br> <a target="_blank" href="${imageLink}">view FILE</a><br><br>`;
-document.querySelector('#success_message').style.display= 'block';
+    document.querySelector('#success_message').innerHTML +=`File uploaded to IPFS:<i class="fa fa-check" aria-hidden="true"></i><br> ${imageLink} .<br> <a target="_blank" href="${imageLink}">view FILE</a><br><br>`;
+    document.querySelector('#success_message').style.display= 'block';
 
-
+// CONTINUE TO UPLOAD METADATA
     let metadata = {
       name: nftName.value,
       description: nftDesc.value,
@@ -313,92 +189,49 @@ document.querySelector('#success_message').style.display= 'block';
     await jsonFile.saveIPFS();
     let metadataHash = jsonFile.hash();
     let metadataLink = "ipfs://" + metadataHash;
+    let metadataLinknftport = "/ipfs/" + metadataHash;
     console.log(metadataHash);
+   
+    // SHOW OPERATION DETAILS;
+    document.querySelector('#success_message').innerHTML +=`Metadata uploaded to IPFS:<i class="fa fa-check" aria-hidden="true"></i><br> ${metadataLink} .<br> <a target="_blank" href="${metadataLink}">view METADATA</a>`;
 
-document.querySelector('#success_message').innerHTML +=`Metadata uploaded to IPFS:<i class="fa fa-check" aria-hidden="true"></i><br> ${metadataLink} .<br> <a target="_blank" href="${metadataLink}">view METADATA</a>`;
+/*********************************************************************************************
+ .) //CUSTOMIZABLE MINTING NFT with NFTPORT
+ // https://nftport.stoplight.io/docs/nftport/b3A6MjE2NjM5MDI-customizable-minting
+**********************************************************************************************/
+// const TOKEN_CONTRACT_ADDRESS = "0x0dB4DF5E0FF20aCF2E3469d5756103A3e03cd1a1"; // creado con nftport
+const NFTPORT_KEY = '524a1fad-f13f-4317-8ad0-0e75e45d4b61';
+const TOKEN_CONTRACT_ADDRESS = "0x95c5B3a20e6f8a352B82236271756Ed83d4030b0"; // creado con nftport
+const TO_ADDRESS = "0x23620BC1ce5FA0d55b767061a7307CC44Ab7099B"; // creado con nftport
+const CHAIN = "polygon"; 
+
+const settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://api.nftport.xyz/v0/mints/customizable",
+  "method": "POST",
+  "headers": {
+    "Content-Type": "",
+    "Authorization": `${NFTPORT_KEY}`
+  },
+  "processData": false,
+  // "data": "{\n  \"chain\": \"polygon\",\n  \"contract_address\": \"0x95c5B3a20e6f8a352B82236271756Ed83d4030b0\",\n  \"metadata_uri\": \"https://bafybeid7bpyuhksskjnq62s2fs2floz6ix7uf2lyjwwzpphfrjovawdvte.ipfs.dweb.link/\",\n  \"mint_to_address\": \"0x9031FDE86c3c9115d302043316E97dD9ef5d3e66\"\n}"
+  "data": `{\n  \"chain\": \"${CHAIN}\",\n  \"contract_address\": \"${TOKEN_CONTRACT_ADDRESS}\",\n  \"metadata_uri\": \"${metadataLink}/\",\n  \"mint_to_address\": \"${TO_ADDRESS}\"\n}`
+};
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
 
   
-    //CUSTOMIZABLE MINTING NFT with NFTPORT
-    // https://nftport.stoplight.io/docs/nftport/b3A6MjE2NjM5MDI-customizable-minting
 
-
-
-  }
+}
 
   document.getElementById('submit_mint').onclick = submit;
 
   
 
 
-
-
-// // MINT!
-// mintNFT = async metadataUrl => {
-//   const receipt = await tokenContract.methods
-//     .createItem(metadataUrl)
-//     .send({
-//       from: ethereum.selectedAddress
-//     })
-//     .then(function(result) {
-//       console.log("RECEIPT RECEIVED!: ", result);
-//       let NFTId = result.events.Transfer.returnValues.tokenId;
-//       let NFTETHContractAndId = TOKEN_CONTRACT_ADDRESS + "?a=" + NFTId;
-//       let NFTMATICContractAndId = TOKEN_CONTRACT_ADDRESS + "/instance/" + NFTId;
-//       let network = window.ethereum.networkVersion;
-
-//       // add a different link according to network
-//       if (network == 1) {
-//         a2.innerHTML +=
-//           '<a target="_blank" href="https://etherscan.io/token/' +
-//           NFTETHContractAndId +
-//           '"> Token Contract: ' +
-//           NFTETHContractAndId +
-//           "</a>";
-//       } //eth
-//       if (network == 3) {
-//         a2.innerHTML +=
-//           '<a target="_blank" href="https://ropsten.etherscan.io/token/' +
-//           NFTETHContractAndId +
-//           '"> Token Contract: ' +
-//           NFTETHContractAndId +
-//           "</a>";
-//       } //ropten
-//       if (network == 80001) {
-//         a2.innerHTML +=
-//           '<a target="_blank" href="https://explorer-mumbai.maticvigil.com/tokens/' +
-//           NFTMATICContractAndId +
-//           '"> Token Contract: ' +
-//           NFTMATICContractAndId +
-//           "</a>";
-//       } //mumbai
-//       if (network == 137) {
-//       } //matic
-//       if (network == 5777) {
-//         a2.innerHTML +=
-//           "<a> Contrato:" +
-//           TOKEN_CONTRACT_ADDRESS +
-//           ", Token ID: " +
-//           NFTId +
-//           "</a>";
-//       } //ganache
-
-//       Swal.fire( 'Good job!', 'Item minted!', 'success' )
-    
-
-//       return NFTId;
-//     })
-//     .catch(function(error) {
-//       console.error(error);
-    
-//     }); //
-//   console.log("receipt from mintNFT(): ", receipt);
-
-//   // aca con un condicional escuchando undefined puedo ejecutar el codigo de la siguiente seccion
-//   if (receipt === undefined) {
-//     console.log("RESULTADO INDEFINIDO from mintNFT()");
-//   }
-//   return receipt;
-// };
 
 
 // .................................
