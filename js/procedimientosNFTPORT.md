@@ -81,6 +81,8 @@ $.ajax(settings).done(function (response) {
 # DINAMIC NFTs
 <https://docs.nftport.xyz/docs/nftport/ZG9jOjI4NzY0NTY1-how-to-create-dynamic-nf-ts>
 # 1 crear contrato
+<!-- https://docs.nftport.xyz/docs/nftport/b3A6MjE0MDYzNzU-deploy-an-nft-contract -->
+
 const settings = {
   "async": true,
   "crossDomain": true,
