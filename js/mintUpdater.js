@@ -179,8 +179,11 @@ initializeApp();
 //  https://docs.nftport.xyz/docs/nftport/b3A6MjU2NTIyMTg-update-a-minted-nft
 **********************************************************************************************/
 const NFTPORT_KEY = '524a1fad-f13f-4317-8ad0-0e75e45d4b61';
-const TOKEN_CONTRACT_ADDRESS = "0x95c5B3a20e6f8a352B82236271756Ed83d4030b0"; // creado con nftport
-const TOKEN_ID = "1370968920948363123531424230230201071445727871152"; // creado con nftport
+// const TOKEN_ID = "1370968920948363123531424230230201071445727871152"; // creado con nftport
+// const TOKEN_CONTRACT_ADDRESS = "0x95c5B3a20e6f8a352B82236271756Ed83d4030b0"; // creado con nftport . owner xun
+const TOKEN_CONTRACT_ADDRESS = "0x7C64C82798a355DA6ced94642960A7F11C07A05a"; // creado con nftport . owner xun
+
+
 // const TO_ADDRESS = "0x23620BC1ce5FA0d55b767061a7307CC44Ab7099B"; // creado con nftport
 const CHAIN = "polygon"; 
 
@@ -209,8 +212,8 @@ document.getElementById('mintupdater').onclick = submit;
 // .................................
 // AUTOFILL PARA TESTING!
 // .................................
-const TOKEN_CONTRACT_ADDRESS = "0x95c5B3a20e6f8a352B82236271756Ed83d4030b0"; // creado con nftport
-const TOKEN_ID = "1370968920948363123531424230230201071445727871152"; //
+const TOKEN_CONTRACT_ADDRESS = "0x7C64C82798a355DA6ced94642960A7F11C07A05a"; // creado con nftport
+// const TOKEN_ID = "1370968920948363123531424230230201071445727871152"; //
 
 document.getElementById('input_tokenid').value = `${TOKEN_ID}`;
 document.getElementById('input_tokencontract').value = `${TOKEN_CONTRACT_ADDRESS}`;

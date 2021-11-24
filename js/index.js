@@ -109,7 +109,9 @@ async function getOwner(id,divid){
 // retriebe all nfts per contract
 const NFTPORT_KEY = '524a1fad-f13f-4317-8ad0-0e75e45d4b61';
 // const TOKEN_CONTRACT_ADDRESS = "0x0dB4DF5E0FF20aCF2E3469d5756103A3e03cd1a1"; // creado con nftport
-const TOKEN_CONTRACT_ADDRESS = "0x95c5B3a20e6f8a352B82236271756Ed83d4030b0"; // creado con nftport
+// const TOKEN_CONTRACT_ADDRESS = "0x95c5B3a20e6f8a352B82236271756Ed83d4030b0"; // creado con nftport. owner xun
+const TOKEN_CONTRACT_ADDRESS = "0x7C64C82798a355DA6ced94642960A7F11C07A05a"; // creado con nftport para FINAL. owner xun
+
 const CHAIN = "polygon"; 
 const parent = document.getElementById("inventory");
 const insideContent = document.getElementById("overlay");
