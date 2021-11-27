@@ -189,15 +189,23 @@ initializeApp();
 
       
   /*********************************************************************************************
- .) MINT UPDATER  (with NFTPORT)
+ .) MINT UPDATER
 //  https://docs.nftport.xyz/docs/nftport/b3A6MjU2NTIyMTg-update-a-minted-nft
 // https://nftport.stoplight.io/docs/nftport/ZG9jOjI4NzY0NTY1-how-to-create-dynamic-nf-ts#deploy-contract
 **********************************************************************************************/
+// const TOKEN_ID = "1370968920948363123531424230230201071445727871152"; // creado con nftport
+// const TOKEN_CONTRACT_ADDRESS = "0x95c5B3a20e6f8a352B82236271756Ed83d4030b0"; // creado con nftport . owner xun
+// const TO_ADDRESS = "0x23620BC1ce5FA0d55b767061a7307CC44Ab7099B"; // creado con nftport
+// const TOKEN_CONTRACT_ADDRESS = "0x7C64C82798a355DA6ced94642960A7F11C07A05a"; // owner xun. creado con nftport para FINAL
+
 const NFTPORT_KEY = '524a1fad-f13f-4317-8ad0-0e75e45d4b61';
 const CHAIN = "polygon"; 
 
+
 const TOKEN_CONTRACT_ADDRESS = document.getElementById('input_tokencontract').value;
 const TOKEN_ID = document.getElementById('input_tokenid').value;
+
+
 
 const settings = {
     "async": true,
@@ -218,34 +226,8 @@ const settings = {
          document.querySelector('#success_message').innerHTML += `<br><br>NFT id: ${response.token_id} updated! <i class="fa fa-check" aria-hidden="true"></i><br> <a target="_blank" href="${response.transaction_external_url}">check transaction</a>`;
     
   });
-
-//   /*********************************************************************************************
-//  .) MINT UPDATER (with moralis)
-// // https://poc.moralis.io/web3Api
-
-// */
-// async function getOwner(id,divid){
-//   console.log('input',id,divid);
-//   const options = { address: TOKEN_CONTRACT_ADDRESS, token_id: id, chain: CHAIN     };
-// const ownrs= await  Moralis.Web3API.token.getTokenIdOwners(options)
-// // const ownrs =   Moralis.Web3API.token.getTokenIdOwners(options)
-// // Moralis.Web3API.token.getTokenIdOwners(options)
-//   console.log('owner: ',ownrs.result[0].owner_of);
-//   console.log('owners amount: ',ownrs.result[0].amount);
-  
-//   setTimeout(() => {
-//     document.getElementById("preview-"+id).innerHTML += 	`<p  onclick="owner();" class="owner btn-grad">OWNER: ${ownrs.result[0].owner_of}</p>`
-//   }, 3000);
-
-
-//   return ownrs
-// }
-
-
-
-
-
 }
+
 document.getElementById('mintupdater').onclick = submit;
 
 // .................................

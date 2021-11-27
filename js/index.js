@@ -102,6 +102,29 @@ async function getOwner(id,divid){
       return ownrs
 }
 
+
+/*********************************************************************************************
+   .) GET NFTs metadata with moralis
+  //  https://deep-index.moralis.io/api/v2/nft/0x7C64C82798a355DA6ced94642960A7F11C07A05a/398885296004351450167?chain=polygon&format=decimal
+
+   **********************************************************************************************/
+//    async function getMetadata(contract,tokenid){
+//     console.log('getMetadata',contract,tokenid);
+//     const options = { address: TOKEN_CONTRACT_ADDRESS, token_id: id, chain: CHAIN     };
+//   const ownrs= await  Moralis.Web3API.token.getTokenIdOwners(options)
+//     console.log('owner: ',ownrs.result[0].owner_of);
+//     console.log('owners amount: ',ownrs.result[0].amount);
+    
+//     setTimeout(() => {
+//       document.getElementById("preview-"+id).innerHTML += 	`<p  onclick="owner();" class="owner btn-grad">OWNER: ${ownrs.result[0].owner_of}</p>`
+//     }, 3000);
+
+
+//     return ownrs
+// }
+
+
+
   /*********************************************************************************************
  .) NFTPORT stuff
 **********************************************************************************************/
@@ -131,8 +154,20 @@ $.ajax(settings).done(function (response) {
 
    
     
-// API call
-    const settings = { "async": true, "crossDomain": true, "url": `https://api.nftport.xyz/v0/nfts/${caddr}/${token}?chain=${chain}`, "method": "GET", "headers": { "Content-Type": "application/json", "Authorization": `${NFTPORT_KEY}` } };
+// API call: retriebe NFT's metadata 
+    const settings = { 
+      "async": true, 
+      "crossDomain": true,
+      // "url": `https://api.nftport.xyz/v0/nfts/${caddr}/${token}?chain=${chain}`,
+      // "url": "https://api.nftport.xyz/v0/nfts/contract_address/token_id?chain=ethereum&refresh_metadata=true",
+      "url": `https://api.nftport.xyz/v0/nfts/${caddr}/${token}?chain=${chain}&refresh_metadata=true`, // refreshing_metadata
+      "method": "GET", 
+      "headers": { 
+        "Content-Type": "application/json", 
+        "Authorization": `${NFTPORT_KEY}` 
+      }
+    };
+
     $.ajax(settings).done(function (x) {
       console.log('x: ',x)
       let name = x.nft.metadata.name;

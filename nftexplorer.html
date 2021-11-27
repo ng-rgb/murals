@@ -1,0 +1,118 @@
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <!-- Moralis SDK code -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+    <!-- <script src="serverInit.js"></script> -->
+  
+</head>
+  <body>
+    <h1>NFT Explorer</h1>
+    <p>Enter your address and chain and get all nfts owned by this address</p>
+    <!-- <h5>Example Token and marketplace creator contract</h5>
+    <p>0x8Ab2A64D0767140ADc2886EAB4ac2e9a48fda03b</p>
+
+    <h5>Example Ropsten Musicshares Marketplace Contract</h5>
+    <p>0x043810700FB24A6b7925F2FF274C3E198827d790</p>
+    <p> -->
+
+        Address: <input type="text" id="address" size="64" maxlength='64' />
+        <!-- Contract: <input type="text" id="contract" size="64" maxlength='64' /> -->
+        <!-- Token Id: <input type="text" id="tokenid" size="64" maxlength='64' /> -->
+      
+      <br />
+      Chain: <select id="chain">
+        <option value="">Make choice...</option>
+        <option value="eth">ETH</option>
+        <option value="bsc">BSC</option>
+        <option value="polygon">Polygon</option>
+        <option value="ropsten">Rospten</option>
+        <option value="mumbai">Mumbai</option>
+        <option value="ganache">ganache</option>
+      </select><br />
+      <button id="btnUpdate">Update</button>
+
+    </p>
+
+    <h3>Content</h3>
+    <div id="content"></div>
+
+    <script>
+   /*********************************************************************************************
+   .) MORALIS (for loggin and other quickfixes)
+   **********************************************************************************************/
+
+
+   // 0. Check moralis
+   const serverUrl = "https://hyorvrgxcdmm.usemoralis.com:2053/server";
+   const appId = "Lx28OvD1jYsfl8Q52brKgUbJ1yGP9kWgffDg2hrU";
+   Moralis.start({
+     serverUrl,
+     appId
+   });
+
+
+//   Moralis.initialize("6ijYYFc2YUeFADZCLhzBGav42qM0AiHJPODxY9mB");
+    //   Moralis.serverURL = "https://oxhqnewiq4eg.moralis.io:2053/server";
+    //   const IPFSGATEWAY= 'https://ipfs.moralis.io:2053/ipfs/';
+
+
+      const IPFSGATEWAY= 'https://ipfs.io/ipfs/';
+
+      async function getNFTs(chain, address) {
+        // get polygon NFTs for address
+        const options = { chain: chain, address: address };
+
+        var maxnr = 10;
+        const nftCount = await Moralis.Web3.getNFTsCount(options);
+        $("#content").html("<p>Items count: " + nftCount + " (max " + maxnr + " listed)</p>");
+
+        if (nftCount > 0) {
+          const allNFTs = await Moralis.Web3.getNFTs(options);
+          //console.log(allNFTs);
+
+          allNFTs.forEach( (nft) => {
+            console.log(nft);
+
+            if (maxnr > 0) {
+              fetch(fixURL(nft.token_uri))
+                .then(response => response.json())
+                .then(data => {
+                  $("#content").html($("#content").html() 
+                    + "<div><img width='100' align='left' src='" + fixURL(data.image) + "' />"
+                    + "<h2>" + data.name +"</h2>"
+                    + "<p>" + nft.name+ "(" + nft.symbol+ ")"+ "</p>"
+                    + "<p> ID:" + nft.token_id + ", contract: "+nft.token_address +"</p>"
+                    + "<a href='"+ nft.token_uri +"'>" + nft.token_uri +"</a>"
+                    + "<p>" + data.description + "</p></div><br clear='all' />");
+                });
+            }
+            maxnr--;
+          });
+        }
+      }
+
+    //   fix url for browsers that this ipfs:// doesnt work
+      fixURL = (url) => {
+        if (url.startsWith("ipfs")) {
+          return "https://ipfs.moralis.io:2053/ipfs/" + url.split("ipfs://ipfs/")[1];
+        } else {
+          return url + "?format=json";
+        }
+      }
+
+      document.getElementById("btnUpdate").onclick = () => {
+        console.log("Update!");
+        let chain = $("#chain").val();
+        let address = $("#address").val();
+        // let contract = $("#contract").val();
+        // let tokenid = $("#tokenid").val();
+        console.log("Update! chain="+chain+" address="+address);
+        if (typeof chain !== 'undefined' && typeof address != 'undefined') {
+          getNFTs(chain, address);
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -377,6 +377,8 @@ main {
 .box__img--original {
 	max-height: calc(100vh - 10rem);
 	filter: none;
+
+	max-height: 400px;
 }
 
 .overlay__close {
