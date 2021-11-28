@@ -90,6 +90,88 @@
 
 				<button class="overlay__close"><svg class="icon icon--cross"><use xlink:href="#icon-cross"></use></svg></button>
 
+        <!-- UPDATER MODAL -->
+        <div id="updaterModal" class="modal">
+            <div class="modal-content">
+                <span class="closeModal">&times;</span>
+                <div id="myUPDATER" class="innermodal header ld-over">
+					
+					<div class="title">CRYPTOMURALS NFT UPDATER</div>
+            
+					<div id="success_message"></div>
+					
+					<div class="form_element">
+				<label>NFT ID</label>
+						<input type="text" class="form-control" id="input_tokenid" name="token id"  placeholder="NFT ID">
+					</div> 
+		
+					<div class="form_element">
+				<label>NFT Contract</label>
+						<input type="text" class="form-control" id="input_tokencontract" name="contract"  placeholder="NFT CONTRACT">
+					</div> 
+		
+		
+			  <div class="form_element">
+				<input type="text" class="form-control" id="nftName" name="description"  placeholder="NFT Name">
+			</div> 
+		
+			  <div class="form_element">
+				<textarea id="nftDesc" class="form-control" name="tutorial" rows="5" cols="40" placeholder="Upload your NFT image"></textarea>
+			  </div>
+		
+		
+		 
+			  <div class="form_element">
+				<input type="file" class="form-control" accept="image/png, image/jpeg" id="nftimg" name="image"  placeholder="NFT image">
+			</div>
+		
+			  <div>
+				<label>Video link </label>
+				<input id="vidLink" type="text" maxlength="50">
+			  </div>
+		
+		
+			  <div>
+				<label>Geo Info </label>
+				<input id="geoInfo" type="text" maxlength="50">
+			  </div>
+		
+			  <div>
+				<label>qr link </label>
+				<input id="qrlink" type="text" maxlength="50">
+			  </div>
+		
+		
+		
+					<div class="form_element">
+						<button class="btn btn-primary btn-lg btn-block" id="mintupdater">UPDATE this NFT</button>
+					</div>
+
+<!-- 					
+
+					<div>
+						<label>Token id</label>
+						<input id="token_id_input" type="number" onKeyDown="return false">
+					</div>
+					<div>
+						<label>Amount</label>
+						<input id="amount_input" type="number" value="1">
+					</div>
+					<div>
+						<label>Address</label>
+						<input id="address_input" type="text" maxlength="50" >
+					</div>
+					<div>
+						<button class="btn btn-primary" id="submit_mint">MINT</button>
+					</div> -->
+
+
+
+                </div>
+            </div>
+        </div>
+        <!-- fin UPDATER MODAL -->
+
 
         <!-- MINTER MODAL -->
         <div id="minterModal" class="modal">
@@ -197,6 +279,7 @@
 		  <ul class="footer-links">
 			<li><a title="CRYPTOMURALS Auction" target="_blank" href="auction.html">start auction</a></li>
 			<li><a title="CRYPTOMURALS Auction" target="_blank" href="minter.html">Minter </a></li>
+			<li><a title="CRYPTOMURALS Auction" target="_blank" href="nftexplorer.html">NFT explorer </a></li>
 			<li><a title="CRYPTOMURALS Auction" target="_blank" href="imguploader.html">IPFS Image Uploader </a></li>
 			<li><a title="CRYPTOMURALS Auction" target="_blank" href="viduploader.html">IPFS Media Uploader </a></li>
 			<li><a title="CRYPTOMURALS Auction" target="_blank" href="mintUpdater.html">Mint Updater </a></li>

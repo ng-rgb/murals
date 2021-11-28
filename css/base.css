@@ -1227,6 +1227,8 @@ path.two {
     overflow: auto;
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
+
+	z-index: 2!important;
 }
 
 /* Modal Content/Box */
@@ -1285,7 +1287,9 @@ path.two {
     animation-name: animatetop;
     animation-duration: 0.4s
 }
-
+.innermodal {
+	padding: 1em;
+}
 /* Add Animation */
 
 @keyframes animatetop {

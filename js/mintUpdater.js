@@ -219,30 +219,6 @@ const settings = {
     
   });
 
-//   /*********************************************************************************************
-//  .) MINT UPDATER (with moralis)
-// // https://poc.moralis.io/web3Api
-
-// */
-// async function getOwner(id,divid){
-//   console.log('input',id,divid);
-//   const options = { address: TOKEN_CONTRACT_ADDRESS, token_id: id, chain: CHAIN     };
-// const ownrs= await  Moralis.Web3API.token.getTokenIdOwners(options)
-// // const ownrs =   Moralis.Web3API.token.getTokenIdOwners(options)
-// // Moralis.Web3API.token.getTokenIdOwners(options)
-//   console.log('owner: ',ownrs.result[0].owner_of);
-//   console.log('owners amount: ',ownrs.result[0].amount);
-  
-//   setTimeout(() => {
-//     document.getElementById("preview-"+id).innerHTML += 	`<p  onclick="owner();" class="owner btn-grad">OWNER: ${ownrs.result[0].owner_of}</p>`
-//   }, 3000);
-
-
-//   return ownrs
-// }
-
-
-
 
 
 }
@@ -261,4 +237,14 @@ document.getElementById('mintupdater').onclick = submit;
 
 
    
-   
+// document.getElementById('nftName').value = 'DFACEETHBLOBAL v2';
+//    document.getElementById('nftDesc').value = 'NAME OF THE PAINT: Motion design by @serial_looper. When you buy this NFT you support 4 parts: The artist, the motion designer, the festival and the murals project';
+//    document.getElementById('vidLink').value = 'ipfs://QmcsbvqYChx6M61jKANFsQZneE2mR5tb5cDjG8MbgVYTHA';
+//    document.getElementById('geoInfo').value = '48.83258258297137, 2.3616745019412626';
+//    document.getElementById('qrlink').value = 'https://rdsb.link/r/600a4699ad532';
+
+// Fractional Smart Contracts and Vaults
+// 1. A smart contract for vaults containing single fractionalized NFTs.
+// 2. Another is for vaults containing multiple F-NFTs. 
+// 3. Finally, there is a smart contract that facilitates vault governance. 
+
