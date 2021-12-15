@@ -100,104 +100,71 @@
             
 					<div id="success_message"></div>
 					
-
-					<div class="form__group field">
-						<input type="text" class="form__field" placeholder="NFT ID" name="token id" id='input_tokenid' autocomplete="off" required />
-						<label for="name" class="form__label">NFT ID</label>
-					  </div>
-
-					<!-- <div class="form_element">
+					<div class="form_element">
 				<label>NFT ID</label>
 						<input type="text" class="form-control" id="input_tokenid" name="token id"  placeholder="NFT ID">
-					</div>  -->
+					</div> 
 		
-					<div class="form__group field">
-						<input type="text" class="form__field" placeholder="NFT CONTRACT" name="contract" id='input_tokencontract' autocomplete="off" maxlength="50" required />
-						<label for="name" class="form__label">NFT Contract</label>
-					  </div>
-
-
-					<!-- <div class="form_element">
+					<div class="form_element">
 				<label>NFT Contract</label>
 						<input type="text" class="form-control" id="input_tokencontract" name="contract"  placeholder="NFT CONTRACT">
-					</div>  -->
+					</div> 
 		
 		
-
-
-					<div class="form__group field">
-						<input type="input" class="form__field" placeholder="NFT Name" name="nftName" id='nftName' autocomplete="off" required />
-						<label for="name" class="form__label">NFT Name</label>
-					  </div>
-			  <!-- <div class="form_element">
+			  <div class="form_element">
 				<input type="text" class="form-control" id="nftName" name="description"  placeholder="NFT Name">
-			</div>  -->
+			</div> 
 		
-
-
-
-
-			<!-- <div class="form__group field">
-				<textarea   class="form__field" placeholder="Name" name="name" id='description' autocomplete="off" required rows="5" cols="40" ></textarea>
-				<label for="name" class="form__label">Description</label>
-			  </div> -->
-			  
 			  <div class="form_element">
 				<textarea id="nftDesc" class="form-control" name="tutorial" rows="5" cols="40" placeholder="Upload your NFT image"></textarea>
 			  </div>
 		
 		
-<!-- 		 
+		 
 			  <div class="form_element">
 				<input type="file" class="form-control" accept="image/png, image/jpeg" id="nftimg" name="image"  placeholder="NFT image">
-				<a href="#" id="file-button">+ Upload image</a>
-			</div> -->
-
+			</div>
 		
-
-			<div class="form__group field">
-				<input type="input" class="form__field" placeholder="Video link" name="Video link" id='vidLink' autocomplete="off" required />
-				<label for="name" class="form__label">Video link</label>
-			  </div>
-			  <!-- <div>
+			  <div>
 				<label>Video link </label>
 				<input id="vidLink" type="text" maxlength="50">
-			  </div> -->
-		
-		
-			  <div class="form__group field">
-				<input type="text" class="form__field" placeholder="Geo Info" name="geoInfo" id='geoInfo' autocomplete="off" required />
-				<label for="name" class="form__label">Geo Info</label>
 			  </div>
-			  <!-- <div>
+		
+		
+			  <div>
 				<label>Geo Info </label>
 				<input id="geoInfo" type="text" maxlength="50">
-			  </div> -->
-		
-
-
-			  <div class="form__group field">
-				<input type="text" class="form__field" placeholder="qr link" name="qrlink" id='qrlink' autocomplete="off" required />
-				<label for="name" class="form__label">qr link</label>
 			  </div>
-			  <!-- <div>
+		
+			  <div>
 				<label>qr link </label>
 				<input id="qrlink" type="text" maxlength="50">
-			  </div> -->
+			  </div>
 		
 		
 		
-
-			  <div class="form_element">
-				<input type="file" class="form-control" accept="image/png, image/jpeg" id="nftimg" name="image"  placeholder="NFT image">
-				<a href="#" id="file-button">+ Upload image</a>
-			</div>
-
 					<div class="form_element">
 						<button class="btn btn-primary btn-lg btn-block" id="mintupdater">UPDATE this NFT</button>
 					</div>
 
- 
+<!-- 					
+
+					<div>
+						<label>Token id</label>
+						<input id="token_id_input" type="number" onKeyDown="return false">
+					</div>
+					<div>
+						<label>Amount</label>
+						<input id="amount_input" type="number" value="1">
+					</div>
+					<div>
+						<label>Address</label>
+						<input id="address_input" type="text" maxlength="50" >
+					</div>
+					<div>
+						<button class="btn btn-primary" id="submit_mint">MINT</button>
+					</div> -->
+
 
 
                 </div>
@@ -213,6 +180,7 @@
                 <div id="myMINTER" class="header ld-over">
 					<div>
 						<label>Token id</label>
+						<!-- <p id="token_id_input" type="number"></p> -->
 						<input id="token_id_input" type="number" onKeyDown="return false">
 					</div>
 					<div>
@@ -267,49 +235,21 @@
 	<div class="modal-content">
 		<span class="closeModal">&times;</span>
 		<div id="myBURNER" class="header ld-over">
-
-			<div class="form__group field">
-				<input type="number" class="form__field" placeholder="Name" name="name" id='burnerToken_id_input' autocomplete="off" required />
-				<label for="name" class="form__label">Token id</label>
-			  </div>
-
-
-			<!-- <div>
+			<div>
 				<label>Token id</label>
 				<input id="burnerToken_id_input" type="number">
-			</div> -->
-
-			<div class="form__group field">
-				<input type="number" class="form__field" placeholder="Name" name="name" id='burnerAmount_input' autocomplete="off" required />
-				<label for="name" class="form__label">Amount</label>
-			  </div>
-
-
-			<!-- <div>
+			</div>
+			<div>
 				<label>Amount</label>
 				<input id="burnerAmount_input" type="number" value="1">
-			</div> -->
-
-
-			<div class="form__group field">
-				<input type="text" class="form__field" placeholder="Name" name="name" id='burnerAddress_input' maxlength="50"  autocomplete="off" required />
-				<label for="name" class="form__label">Address</label>
-			  </div>
-
-
-			<!-- <div>
+			</div>
+			<div>
 				<label>Address</label>
 				<input id="burnerAddress_input" type="text" maxlength="50" >
-			</div> -->
-
-
-
+			</div>
 			<div>
 				<button class="btn btn-primary" id="submit_burn">Burn</button>
 			</div>
-
-
-
 		</div>
 	</div>
 </div>

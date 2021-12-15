@@ -34,18 +34,12 @@ const fixedToast = swal.mixin({
 // 0. Check moralis
 const serverUrl = "https://hyorvrgxcdmm.usemoralis.com:2053/server";
 const appId = "Lx28OvD1jYsfl8Q52brKgUbJ1yGP9kWgffDg2hrU";
-// Moralis.start({ serverUrl, appId });
-
-
-const init = async () => {
-await Moralis.start({
-  appId : appId,
-  serverUrl: serverUrl
+Moralis.start({
+  serverUrl,
+  appId
 });
-Moralis.initPlugins();
-};
 
-init();
+
 
 /*********************************************************************************************
 .) LOGG stuff
@@ -64,7 +58,7 @@ async function login() {
 
       var x = userAddress;
       var shortAddr = x.substring(0, 8) + "...";
-      document.getElementById("logg").innerHTML = "<p class='loged btn-grad-inv'>" + shortAddr + " <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p> <p style='display:none' class='responsiveloged btn-grad-inv'> <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
+      document.getElementById("logg").innerHTML = "<p class='loged btn-grad-inv'>" + shortAddr + " <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
 
       console.log('User address: ', userAddress);
 
@@ -77,8 +71,7 @@ async function login() {
     let userAddress = user.get('ethAddress');
     var x = userAddress;
     var shortAddr = x.substring(0, 8) + "...";
-    // document.getElementById("logg").innerHTML = "<p class='loged btn-grad-inv'>" + shortAddr + " <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
-    document.getElementById("logg").innerHTML = "<p class='loged btn-grad-inv'>" + shortAddr + " <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p> <p style='display:none' class='responsiveloged btn-grad-inv'> <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
+    document.getElementById("logg").innerHTML = "<p class='loged btn-grad-inv'>" + shortAddr + " <i class='logout fa fa-sign-out' aria-hidden='true' onclick='event.stopPropagation();logOut()'></i> </p>";
 
   }
 }
@@ -86,7 +79,7 @@ async function login() {
 // LOGOUT
 async function logOut() {
   await Moralis.User.logOut();
-  document.getElementById("logg").innerHTML = `<button  class="btn-grad"   onclick="login();">Connect</button>`;
+  document.getElementById("logg").innerHTML = `<button  class="btn-grad"   onclick="login();">Connect</button>`
 
   console.log("logged out");
 }
@@ -109,8 +102,7 @@ async function getOwner(id, divid) {
   console.log('owners amount: ', ownrs.result[0].amount);
 
   setTimeout(() => {
-    // document.getElementById("preview-" + id).innerHTML += `<p  onclick="owner();" class="owner btn-grad">OWNER: ${ownrs.result[0].owner_of}</p>`
-    document.getElementById("preview-" + id).innerHTML += `<p  onclick="owner();" class="owner btn-grad">OWNER: ${ownrs.result[0].owner_of}<br>Total Owners: ${ownrs.result[0].amount}</p>`;
+    document.getElementById("preview-" + id).innerHTML += `<p  onclick="owner();" class="owner btn-grad">OWNER: ${ownrs.result[0].owner_of}</p>`
   }, 3000);
 
 
@@ -119,11 +111,24 @@ async function getOwner(id, divid) {
 
 
 /*********************************************************************************************
-   .) GET NFTs  with covalent
+   .) GET NFTs metadata with moralis
   //  https://deep-index.moralis.io/api/v2/nft/0x7C64C82798a355DA6ced94642960A7F11C07A05a/398885296004351450167?chain=polygon&format=decimal
 
    **********************************************************************************************/
+//    async function getMetadata(contract,tokenid){
+//     console.log('getMetadata',contract,tokenid);
+//     const options = { address: TOKEN_CONTRACT_ADDRESS, token_id: id, chain: CHAIN     };
+//   const ownrs= await  Moralis.Web3API.token.getTokenIdOwners(options)
+//     console.log('owner: ',ownrs.result[0].owner_of);
+//     console.log('owners amount: ',ownrs.result[0].amount);
 
+//     setTimeout(() => {
+//       document.getElementById("preview-"+id).innerHTML += 	`<p  onclick="owner();" class="owner btn-grad">OWNER: ${ownrs.result[0].owner_of}</p>`
+//     }, 3000);
+
+
+//     return ownrs
+// }
 
 
 
@@ -406,15 +411,6 @@ function initUpdaterModal() {
   // document.getElementById("address_input").value = user.get("ethAddress"); //populate address
 
 }
-
-
-// UPLOADE IMAGE
-var fakeBut = document.getElementById('file-button'),
-    realInput = document.getElementById('nftimg');
-
-fakeBut.addEventListener('click', function(e) {
-    realInput.click();
-});
 
 
 async function updateNFT() {
